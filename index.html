@@ -122,6 +122,37 @@
   .note-box{background:#fbf5eb; border-left:4px solid var(--gold); border-radius:8px;
     padding:12px 16px; color:#6a6155; font-size:14px}
 
+  /* ---------- INFO (flights & hotels) ---------- */
+  .flight{display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center;
+    background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px;
+    box-shadow:var(--shadow); margin-bottom:14px}
+  .flight .port{font-size:13px; color:var(--muted)}
+  .flight .port .code{font-size:26px; font-weight:800; color:var(--ink); letter-spacing:1px}
+  .flight .port.r{text-align:right}
+  .flight .mid{text-align:center; color:var(--accent)}
+  .flight .mid .no{font-weight:800; font-size:15px}
+  .flight .mid .ln{font-size:18px; letter-spacing:-2px}
+  .flight .mid .t{font-size:11.5px; color:var(--muted)}
+  .flight .tt{font-size:15px; font-weight:700}
+  .flight .dt{font-size:12.5px; color:var(--muted)}
+  .flight-meta{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:12.5px; color:#5b554c;
+    margin:-6px 0 18px; padding:0 4px}
+  .flight-meta b{color:var(--ink)}
+  .pnr{display:inline-block; background:#e9f1ec; color:var(--accent2); font-weight:800;
+    letter-spacing:2px; padding:2px 10px; border-radius:6px}
+  .hcard{display:flex; gap:14px; background:var(--card); border:1px solid var(--line);
+    border-radius:14px; padding:14px 16px; box-shadow:var(--shadow); margin-bottom:12px; align-items:flex-start}
+  .hcard .seq{flex:none; width:40px; height:40px; border-radius:10px; display:grid; place-items:center;
+    background:#f6efdd; color:var(--gold); font-weight:800; font-size:13px}
+  .hcard h4{margin:0 0 2px; font-size:16px}
+  .hcard .nights{font-size:12px; color:var(--accent); font-weight:700; margin-bottom:6px}
+  .hcard .addr{font-size:13px; color:#5b554c; margin:2px 0}
+  .hcard .addr .lbl{color:var(--muted); font-weight:700; margin-right:4px}
+  .hcard a.tel{font-weight:700}
+  .copy{cursor:pointer; border:1px solid var(--line); background:#fff; border-radius:6px;
+    font-size:11px; padding:1px 7px; margin-left:6px; color:var(--muted)}
+  .copy:active{background:#eee}
+
   footer{text-align:center; color:var(--muted); font-size:13px; padding:46px 20px 60px}
   footer .ln{margin-top:6px}
 
@@ -146,6 +177,7 @@
 </header>
 
 <nav>
+  <a href="#info">🛫 重要資訊</a>
   <a href="#itinerary">🗓️ 每日行程</a>
   <a href="#food">🍽️ 美食名單</a>
   <a href="#boat">🛶 屋形舟</a>
@@ -154,8 +186,50 @@
 
 <div class="wrap">
 
-  <section id="itinerary">
-    <h2 class="sec">🗓️ 每日行程 & 日記</h2>
+  <section id="info">
+    <h2 class="sec">🛫 班機資訊</h2>
+    <div class="flight">
+      <div class="port"><div class="code">KHH</div>高雄小港<br>國際航廈</div>
+      <div class="mid"><div class="no">CI166</div><div class="ln">✈</div><div class="t">3h00m · 波音737-800</div></div>
+      <div class="port r"><div class="code">KIX</div>關西<br>第一航廈 T1</div>
+      <div class="tt" style="grid-column:1">07:00</div>
+      <div></div>
+      <div class="tt r" style="grid-column:3">11:00</div>
+      <div class="dt" style="grid-column:1">7/13（一）出發</div>
+      <div></div>
+      <div class="dt r" style="grid-column:3">7/13（一）抵達</div>
+    </div>
+    <div class="flight-meta"><span><b>艙等</b> 經濟艙 R</span><span><b>託運</b> 1 件／23kg</span><span><b>餐</b> 有</span></div>
+
+    <div class="flight">
+      <div class="port"><div class="code">KIX</div>關西<br>第一航廈 T1</div>
+      <div class="mid"><div class="no">CI177</div><div class="ln">✈</div><div class="t">3h15m · A321neo</div></div>
+      <div class="port r"><div class="code">KHH</div>高雄小港<br>國際航廈</div>
+      <div class="tt" style="grid-column:1">20:35</div>
+      <div></div>
+      <div class="tt r" style="grid-column:3">22:50</div>
+      <div class="dt" style="grid-column:1">7/20（一）出發</div>
+      <div></div>
+      <div class="dt r" style="grid-column:3">7/20（一）抵達</div>
+    </div>
+    <div class="flight-meta"><span><b>艙等</b> 經濟艙 K</span><span><b>託運</b> 2 件／23kg</span><span><b>餐</b> 有</span></div>
+
+    <div class="callout" style="background:#fbf5eb;border-color:#ecd9b0;border-left-color:var(--gold)">
+      <div class="row">✈️ 中華航空 China Airlines</div>
+      <div class="row"><b>訂位代號</b> <span class="pnr">BHCRQS</span><button class="copy" onclick="copyTxt('BHCRQS',this)">複製</button></div>
+      <div class="row"><b>機票號碼</b> 2977474686388</div>
+      <div class="row"><b>客服</b> 高雄 <a href="tel:+886412-9000">07-412-9000</a> ／ 台北 <a href="tel:+886224129000">(02) 412-9000</a></div>
+    </div>
+
+    <h2 class="sec" style="margin-top:36px">🏨 住宿資訊</h2>
+    <p style="color:var(--muted);font-size:13px;margin-top:-12px">日本入境卡需填「在住地址」，可直接複製日文地址。</p>
+    <div id="hotelzone"></div>
+
+    <h2 class="sec" style="margin-top:36px">🗓️ 每日行程 & 日記</h2>
+  </section>
+
+  <section id="itinerary" style="padding-top:8px">
+    <div style="display:none"></div>
     <p style="color:var(--muted);font-size:14px;margin-top:-12px">點標題展開每一天 · 最下方可寫當天心得，會自動存在這台裝置的瀏覽器裡。</p>
     <div id="days"></div>
   </section>
@@ -308,6 +382,42 @@ document.querySelectorAll('.diary textarea').forEach(ta=>{
     sv.classList.add('show'); clearTimeout(t);
     t = setTimeout(()=> sv.classList.remove('show'), 1200);
   });
+});
+
+// ---------- 複製工具 ----------
+function copyTxt(t, btn){
+  navigator.clipboard.writeText(t).then(()=>{
+    const o = btn.textContent; btn.textContent='已複製✓';
+    setTimeout(()=> btn.textContent=o, 1200);
+  });
+}
+
+// ---------- 住宿 ----------
+const HOTELS = [
+  {seq:"7/13", name:"MUNI KYOTO", area:"嵐山", nights:"7/13（一）1 晚",
+   addr:"京都府京都市右京区嵯峨天龍寺芒ノ馬場町3", tel:"075-863-1110"},
+  {seq:"7/14", name:"星のや京都（虹夕諾雅）", area:"嵐山", nights:"7/14（二）– 7/15（三）2 晚",
+   addr:"京都府京都市西京区嵐山元録山町11-2", tel:"050-3134-8091",
+   memo:"入住 15:00／退房 12:00 · 渡月橋需搭專用船進入"},
+  {seq:"7/16", name:"クロスホテル京都（十字飯店）", area:"京都 河原町", nights:"7/16（四）– 7/17（五）2 晚",
+   addr:"京都市中京区河原町通三条下る大黒町71-1", tel:"075-231-8831"},
+  {seq:"7/18", name:"ザ・ホテル青龍 京都清水（青龍飯店）", area:"京都 東山", nights:"7/18（六）1 晚",
+   addr:"京都府京都市東山区清水二丁目204-2", tel:"075-532-1111"},
+  {seq:"7/19", name:"インターコンチネンタル大阪（洲際）", area:"大阪 梅田", nights:"7/19（日）– 7/20（一）2 晚",
+   addr:"大阪府大阪市北区大深町3-60", tel:"06-6374-5700"},
+];
+const hz = document.getElementById('hotelzone');
+HOTELS.forEach(h=>{
+  const el = document.createElement('div'); el.className='hcard';
+  el.innerHTML = `<div class="seq">${h.seq}</div>
+    <div style="flex:1">
+      <h4>${h.name}</h4>
+      <div class="nights">📍 ${h.area} · ${h.nights}</div>
+      <div class="addr"><span class="lbl">地址</span>${h.addr}<button class="copy" onclick="copyTxt('${h.addr}',this)">複製</button></div>
+      <div class="addr"><span class="lbl">電話</span><a class="tel" href="tel:${h.tel.replace(/-/g,'')}">${h.tel}</a></div>
+      ${h.memo?`<div class="addr" style="color:var(--muted)">📝 ${h.memo}</div>`:''}
+    </div>`;
+  hz.appendChild(el);
 });
 
 // ---------- 美食 ----------
