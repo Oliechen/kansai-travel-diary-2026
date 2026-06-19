@@ -153,6 +153,45 @@
     font-size:11px; padding:1px 7px; margin-left:6px; color:var(--muted)}
   .copy:active{background:#eee}
 
+  /* ---------- LEDGER (記帳) ---------- */
+  .rate-bar{display:flex; flex-wrap:wrap; align-items:center; gap:8px; background:var(--card);
+    border:1px solid var(--line); border-radius:12px; padding:12px 16px; box-shadow:var(--shadow);
+    margin-bottom:14px; font-size:14px}
+  .rate-bar input{width:84px; border:1px solid var(--line); border-radius:8px; padding:6px 8px;
+    font:inherit; font-size:14px; text-align:right}
+  .sumcards{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin-bottom:14px}
+  .sumcard{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 14px;
+    box-shadow:var(--shadow); text-align:center}
+  .sumcard .v{font-size:21px; font-weight:800; color:var(--ink)}
+  .sumcard .v.green{color:var(--accent2)} .sumcard .v.red{color:var(--accent)}
+  .sumcard .l{font-size:12px; color:var(--muted); margin-top:2px}
+  .ledger-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow); background:var(--card)}
+  table.ledger{width:100%; border-collapse:collapse; min-width:680px; font-size:13.5px}
+  table.ledger th{background:#f6efe2; color:#6a6155; font-weight:700; font-size:12.5px;
+    padding:9px 8px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap}
+  table.ledger td{padding:5px 6px; border-bottom:1px dashed var(--line); vertical-align:middle}
+  table.ledger tr:last-child td{border-bottom:none}
+  table.ledger input[type=text], table.ledger input[type=number], table.ledger select{
+    width:100%; border:1px solid transparent; border-radius:7px; padding:6px 7px; font:inherit;
+    font-size:13.5px; background:transparent; color:var(--ink)}
+  table.ledger input:hover, table.ledger select:hover{background:#fbf5eb}
+  table.ledger input:focus, table.ledger select:focus{outline:none; border-color:var(--accent); background:#fffdfa}
+  table.ledger input[type=number]{text-align:right}
+  .col-amt{width:96px} .col-cur{width:64px} .col-twd{width:92px} .col-cat{width:96px}
+  .col-payer{width:90px} .col-paid{width:48px; text-align:center} .col-x{width:34px; text-align:center}
+  .twd-cell{text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; padding-right:10px; white-space:nowrap}
+  .del-btn{border:none; background:none; cursor:pointer; color:#c9bca8; font-size:16px; line-height:1}
+  .del-btn:hover{color:var(--accent)}
+  .add-row{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+  .add-row button{border:1px dashed var(--accent2); background:#eef4f0; color:var(--accent2);
+    border-radius:10px; padding:9px 16px; font:inherit; font-weight:700; font-size:14px; cursor:pointer}
+  .add-row button:hover{background:#e3eee7}
+  .payer-sum{margin-top:16px; display:flex; flex-wrap:wrap; gap:8px}
+  .payer-sum .ptag{background:#f6efe2; border:1px solid var(--line); border-radius:999px;
+    padding:6px 14px; font-size:13px}
+  .payer-sum .ptag b{color:var(--accent)}
+  .ledger-cat{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; vertical-align:middle}
+
   footer{text-align:center; color:var(--muted); font-size:13px; padding:46px 20px 60px}
   footer .ln{margin-top:6px}
 
@@ -179,6 +218,7 @@
 <nav>
   <a href="#info">🛫 重要資訊</a>
   <a href="#itinerary">🗓️ 每日行程</a>
+  <a href="#ledger">💰 費用記帳</a>
   <a href="#food">🍽️ 美食名單</a>
   <a href="#boat">🛶 屋形舟</a>
   <a href="#todo">✅ 待辦</a>
@@ -232,6 +272,39 @@
     <div style="display:none"></div>
     <p style="color:var(--muted);font-size:14px;margin-top:-12px">點標題展開每一天 · 最下方可寫當天心得，會自動存在這台裝置的瀏覽器裡。</p>
     <div id="days"></div>
+  </section>
+
+  <section id="ledger">
+    <h2 class="sec">💰 費用記帳</h2>
+    <p style="color:var(--muted);font-size:14px;margin-top:-12px">每筆花費記一列，日幣自動換算台幣加總。資料存在本機瀏覽器。</p>
+
+    <div class="rate-bar">
+      <span>💱 匯率　1 JPY =</span>
+      <input type="number" id="rate" step="0.001" min="0">
+      <span>TWD</span>
+      <span style="color:var(--muted);font-size:12.5px">（可隨時調整，日幣金額會即時重算）</span>
+    </div>
+
+    <div class="sumcards">
+      <div class="sumcard"><div class="v" id="sumTotal">—</div><div class="l">總計（台幣）</div></div>
+      <div class="sumcard"><div class="v green" id="sumPaid">—</div><div class="l">已付（台幣）</div></div>
+      <div class="sumcard"><div class="v red" id="sumUnpaid">—</div><div class="l">未付（台幣）</div></div>
+      <div class="sumcard"><div class="v" id="sumCount">—</div><div class="l">筆數</div></div>
+    </div>
+
+    <div class="ledger-wrap">
+      <table class="ledger">
+        <thead><tr>
+          <th>項目</th><th class="col-cat">分類</th><th class="col-cur">幣別</th>
+          <th class="col-amt">金額</th><th class="col-twd">≈台幣</th><th class="col-payer">付款人</th>
+          <th class="col-paid">已付</th><th class="col-x"></th>
+        </tr></thead>
+        <tbody id="ledgerBody"></tbody>
+      </table>
+    </div>
+
+    <div class="add-row"><button onclick="addRow()">＋ 新增一筆</button></div>
+    <div class="payer-sum" id="payerSum"></div>
   </section>
 
   <section id="food">
@@ -455,6 +528,91 @@ FOOD.forEach(g=>{
   });
   fz.appendChild(grid);
 });
+
+// ---------- 費用記帳 ----------
+const CATS = [
+  {n:"機票", c:"#c0584f"},{n:"住宿", c:"#b08d4f"},{n:"餐食", c:"#5a7d6f"},
+  {n:"包車", c:"#7d5a8a"},{n:"交通", c:"#4a8aa0"},{n:"門票/體驗", c:"#c97f3a"},
+  {n:"購物", c:"#b85c7a"},{n:"其他", c:"#8c8377"}
+];
+const catColor = n => (CATS.find(x=>x.n===n)||{}).c || "#8c8377";
+const esc = s => (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const fmtT = n => '$'+Math.round(n||0).toLocaleString();
+const LS_L='kansai2026-ledger', LS_R='kansai2026-rate';
+let LEDGER, RATE;
+
+function loadLedger(){
+  RATE = parseFloat(localStorage.getItem(LS_R)) || 0.21;
+  const saved = localStorage.getItem(LS_L);
+  LEDGER = saved ? JSON.parse(saved) : [
+    {item:'屋形舟「翡翠」(虹夕諾雅)', cat:'門票/體驗', cur:'JPY', amt:51000, payer:'', paid:false},
+    {item:'', cat:'住宿', cur:'JPY', amt:0, payer:'', paid:false},
+    {item:'', cat:'餐食', cur:'JPY', amt:0, payer:'', paid:false},
+  ];
+}
+const saveLedger = () => localStorage.setItem(LS_L, JSON.stringify(LEDGER));
+const twd = r => r.cur==='JPY' ? Math.round(r.amt*RATE) : Math.round(r.amt);
+
+function renderLedger(){
+  const tb = document.getElementById('ledgerBody'); tb.innerHTML='';
+  LEDGER.forEach((r,i)=>{
+    const tr = document.createElement('tr');
+    const catOpts = CATS.map(c=>`<option ${c.n===r.cat?'selected':''}>${c.n}</option>`).join('');
+    tr.innerHTML = `
+      <td><input type="text" value="${esc(r.item)}" data-i="${i}" data-f="item" placeholder="例：包車 / 午餐"></td>
+      <td class="col-cat"><span class="ledger-cat" style="background:${catColor(r.cat)}"></span><select data-i="${i}" data-f="cat" style="width:calc(100% - 13px)">${catOpts}</select></td>
+      <td class="col-cur"><select data-i="${i}" data-f="cur"><option ${r.cur==='JPY'?'selected':''}>JPY</option><option ${r.cur==='TWD'?'selected':''}>TWD</option></select></td>
+      <td class="col-amt"><input type="number" value="${r.amt||''}" data-i="${i}" data-f="amt" min="0" placeholder="0"></td>
+      <td class="col-twd twd-cell" id="twd${i}">${fmtT(twd(r))}</td>
+      <td class="col-payer"><input type="text" value="${esc(r.payer)}" data-i="${i}" data-f="payer" placeholder="誰付的" list="payerList"></td>
+      <td class="col-paid"><input type="checkbox" ${r.paid?'checked':''} data-i="${i}" data-f="paid"></td>
+      <td class="col-x"><button class="del-btn" onclick="delRow(${i})">✕</button></td>`;
+    tb.appendChild(tr);
+  });
+  tb.querySelectorAll('input,select').forEach(el=>{
+    const ev = (el.type==='checkbox'||el.tagName==='SELECT') ? 'change' : 'input';
+    el.addEventListener(ev, ()=>{
+      const i=+el.dataset.i, f=el.dataset.f;
+      LEDGER[i][f] = el.type==='checkbox' ? el.checked : (f==='amt' ? (parseFloat(el.value)||0) : el.value);
+      if(f==='amt'||f==='cur') document.getElementById('twd'+i).textContent = fmtT(twd(LEDGER[i]));
+      if(f==='cat') el.closest('td').querySelector('.ledger-cat').style.background = catColor(el.value);
+      saveLedger(); updateTotals();
+    });
+  });
+  updateTotals();
+}
+
+function updateTotals(){
+  let total=0, paid=0;
+  LEDGER.forEach(r=>{ const t=twd(r); total+=t; if(r.paid) paid+=t; });
+  document.getElementById('sumTotal').textContent = fmtT(total);
+  document.getElementById('sumPaid').textContent = fmtT(paid);
+  document.getElementById('sumUnpaid').textContent = fmtT(total-paid);
+  document.getElementById('sumCount').textContent = LEDGER.length;
+  const byP={};
+  LEDGER.forEach(r=>{ const p=(r.payer||'').trim(); if(p) byP[p]=(byP[p]||0)+twd(r); });
+  const keys=Object.keys(byP);
+  document.getElementById('payerSum').innerHTML = keys.length
+    ? '<span style="font-size:13px;color:var(--muted);align-self:center">各付款人小計：</span>'+
+      keys.map(p=>`<span class="ptag">${esc(p)} <b>${fmtT(byP[p])}</b></span>`).join('') : '';
+  // 更新付款人自動完成
+  let dl=document.getElementById('payerList');
+  if(!dl){ dl=document.createElement('datalist'); dl.id='payerList'; document.body.appendChild(dl); }
+  dl.innerHTML = keys.map(n=>`<option value="${esc(n)}">`).join('');
+}
+
+function addRow(){ LEDGER.push({item:'',cat:'餐食',cur:'JPY',amt:0,payer:'',paid:false}); saveLedger(); renderLedger(); }
+function delRow(i){ LEDGER.splice(i,1); saveLedger(); renderLedger(); }
+
+loadLedger();
+const rateInput=document.getElementById('rate');
+rateInput.value=RATE;
+rateInput.addEventListener('input', ()=>{
+  RATE=parseFloat(rateInput.value)||0; localStorage.setItem(LS_R, RATE);
+  LEDGER.forEach((r,i)=>{ const c=document.getElementById('twd'+i); if(c) c.textContent=fmtT(twd(r)); });
+  updateTotals();
+});
+renderLedger();
 
 // ---------- 待辦 ----------
 const TODO = [
