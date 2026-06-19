@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✈️ 日本關西旅遊日記 2026｜嵐山・京都・大阪</title>
+<style>
+  :root{
+    --ink:#2b2a28; --paper:#faf6ef; --card:#fffdf9; --line:#e7ddcd;
+    --accent:#c0584f; --accent2:#5a7d6f; --gold:#b08d4f; --muted:#8c8377;
+    --shadow:0 6px 24px rgba(60,45,30,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; color:var(--ink); background:var(--paper);
+    font-family:"Hiragino Sans","PingFang TC","Noto Sans TC",-apple-system,system-ui,sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none; border-bottom:1px dotted var(--accent)}
+  a:hover{opacity:.75}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; padding:88px 24px 72px; text-align:center; overflow:hidden;
+    background:
+      radial-gradient(900px 400px at 50% -120px, rgba(192,88,79,.18), transparent 70%),
+      linear-gradient(160deg,#fdf3ea 0%, #f6ece0 60%, #efe4d4 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .hero .plane{font-size:54px; display:block; margin-bottom:8px;
+    filter:drop-shadow(0 4px 6px rgba(0,0,0,.12)); animation:float 5s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .hero h1{margin:6px 0 4px; font-size:clamp(28px,5vw,46px); letter-spacing:1px; font-weight:800}
+  .hero .sub{color:var(--muted); font-size:clamp(15px,2.5vw,19px); letter-spacing:3px}
+  .hero .meta{display:inline-flex; flex-wrap:wrap; gap:10px 16px; justify-content:center; margin-top:22px}
+  .chip{background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:8px 16px; font-size:14px; box-shadow:var(--shadow)}
+  .chip b{color:var(--accent)}
+  .route{margin-top:18px; font-size:clamp(16px,3vw,22px); font-weight:700; letter-spacing:2px}
+  .route span{color:var(--accent2)}
+  .route i{color:var(--gold); font-style:normal; margin:0 6px}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky; top:0; z-index:30; background:rgba(250,246,239,.92);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+    display:flex; gap:4px; overflow-x:auto; padding:10px 14px; scrollbar-width:thin}
+  nav a{white-space:nowrap; border:none; font-size:14px; color:var(--muted);
+    padding:6px 12px; border-radius:8px; font-weight:600}
+  nav a:hover{background:#efe6d8; color:var(--ink); opacity:1}
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 20px}
+  section{padding:46px 0 8px}
+  h2.sec{font-size:24px; margin:0 0 22px; display:flex; align-items:center; gap:10px}
+  h2.sec::after{content:""; flex:1; height:1px; background:var(--line)}
+
+  /* ---------- DAY TIMELINE ---------- */
+  .day{position:relative; background:var(--card); border:1px solid var(--line);
+    border-radius:16px; box-shadow:var(--shadow); margin-bottom:22px; overflow:hidden}
+  .day-head{display:flex; align-items:center; gap:14px; padding:16px 20px; cursor:pointer;
+    background:linear-gradient(90deg,#fff 0%, #fbf5eb 100%)}
+  .daynum{flex:none; width:46px; height:46px; border-radius:12px; display:grid; place-items:center;
+    font-weight:800; color:#fff; background:var(--accent); font-size:15px; line-height:1.1; text-align:center}
+  .day.kyoto .daynum{background:var(--accent2)} .day.osaka .daynum{background:var(--gold)}
+  .day-head h3{margin:0; font-size:17px}
+  .day-head .date{color:var(--muted); font-size:13px; font-weight:600}
+  .day-head .region{margin-left:auto; font-size:13px; font-weight:700; padding:4px 12px;
+    border-radius:999px; background:#fbeae8; color:var(--accent)}
+  .day.kyoto .region{background:#e9f1ec; color:var(--accent2)}
+  .day.osaka .region{background:#f6efdd; color:var(--gold)}
+  .day-head .arr{margin-left:8px; transition:transform .25s; color:var(--muted)}
+  .day.open .arr{transform:rotate(90deg)}
+  .day-body{display:none; padding:4px 20px 20px}
+  .day.open .day-body{display:block}
+
+  .slot{display:flex; gap:12px; padding:11px 0; border-top:1px dashed var(--line)}
+  .slot:first-child{border-top:none}
+  .slot .ic{flex:none; font-size:20px; width:26px; text-align:center}
+  .slot .lb{flex:none; width:74px; color:var(--muted); font-size:13px; font-weight:700; padding-top:1px}
+  .slot .ct{flex:1; font-size:14.5px}
+  .slot .ct br{content:""; display:block; margin:2px 0}
+  .hotel-tag{display:inline-block; margin-top:2px; font-size:12.5px; font-weight:700;
+    color:var(--gold); background:#f7f0df; padding:2px 10px; border-radius:6px}
+
+  /* ---------- DIARY ---------- */
+  .diary{margin-top:14px; border-top:2px solid var(--line); padding-top:14px}
+  .diary .dh{display:flex; align-items:center; gap:8px; font-weight:700; font-size:14px;
+    color:var(--accent); margin-bottom:8px}
+  .diary textarea{width:100%; min-height:72px; resize:vertical; border:1px solid var(--line);
+    border-radius:10px; padding:10px 12px; font:inherit; font-size:14px; background:#fffdfa;
+    color:var(--ink)}
+  .diary textarea:focus{outline:2px solid rgba(192,88,79,.25); border-color:var(--accent)}
+  .diary .saved{font-size:12px; color:var(--accent2); margin-top:4px; height:14px; opacity:0; transition:.2s}
+  .diary .saved.show{opacity:1}
+
+  /* ---------- CARDS (food) ---------- */
+  .cat{font-size:15px; font-weight:800; color:var(--gold); margin:18px 0 10px; letter-spacing:1px}
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px}
+  .fcard{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:16px; box-shadow:var(--shadow)}
+  .fcard h4{margin:0 0 4px; font-size:16px}
+  .fcard .tp{font-size:12px; color:var(--accent2); font-weight:700; margin-bottom:8px}
+  .fcard .row{font-size:13px; margin:3px 0; color:#5b554c}
+  .fcard .row b{color:var(--ink)}
+  .fcard .price{color:var(--accent); font-weight:700}
+  .fcard .note{font-size:12.5px; color:var(--muted); margin-top:8px; border-top:1px dashed var(--line); padding-top:8px}
+
+  /* ---------- CHECKLIST ---------- */
+  .todo{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:8px 18px; box-shadow:var(--shadow)}
+  .todo label{display:flex; gap:11px; align-items:flex-start; padding:10px 0;
+    border-bottom:1px dashed var(--line); cursor:pointer; font-size:14.5px}
+  .todo label:last-child{border-bottom:none}
+  .todo input{margin-top:4px; width:17px; height:17px; accent-color:var(--accent2); flex:none}
+  .todo input:checked + span{text-decoration:line-through; color:var(--muted)}
+
+  /* ---------- CALLOUT ---------- */
+  .callout{background:#eef4f7; border:1px solid #d6e4ea; border-left:4px solid #5a8aa0;
+    border-radius:12px; padding:16px 18px; font-size:14px}
+  .callout h4{margin:0 0 8px; font-size:16px}
+  .callout ul{margin:6px 0; padding-left:20px}
+  .note-box{background:#fbf5eb; border-left:4px solid var(--gold); border-radius:8px;
+    padding:12px 16px; color:#6a6155; font-size:14px}
+
+  footer{text-align:center; color:var(--muted); font-size:13px; padding:46px 20px 60px}
+  footer .ln{margin-top:6px}
+
+  @media(max-width:540px){
+    .slot .lb{width:58px}
+    section{padding:34px 0 8px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="plane">✈️</span>
+  <h1>日本關西旅遊日記</h1>
+  <div class="sub">2 0 2 6　K A N S A I</div>
+  <div class="route"><span>嵐山</span><i>→</i><span>京都</span><i>→</i><span>大阪</span></div>
+  <div class="meta">
+    <span class="chip">🗓️ <b>7/13</b>（一）～ <b>7/20</b>（一）</span>
+    <span class="chip">🌙 共 <b>8 天 7 夜</b></span>
+    <span class="chip">🎏 適逢 <b>祇園祭</b></span>
+  </div>
+</header>
+
+<nav>
+  <a href="#itinerary">🗓️ 每日行程</a>
+  <a href="#food">🍽️ 美食名單</a>
+  <a href="#boat">🛶 屋形舟</a>
+  <a href="#todo">✅ 待辦</a>
+</nav>
+
+<div class="wrap">
+
+  <section id="itinerary">
+    <h2 class="sec">🗓️ 每日行程 & 日記</h2>
+    <p style="color:var(--muted);font-size:14px;margin-top:-12px">點標題展開每一天 · 最下方可寫當天心得，會自動存在這台裝置的瀏覽器裡。</p>
+    <div id="days"></div>
+  </section>
+
+  <section id="food">
+    <h2 class="sec">🍽️ 美食口袋名單</h2>
+    <p style="color:var(--muted);font-size:14px;margin-top:-12px">Rita 食記整理</p>
+    <div id="foodzone"></div>
+  </section>
+
+  <section id="boat">
+    <h2 class="sec">🛶 虹夕諾雅 嵐山｜屋形舟「翡翠」</h2>
+    <div class="callout">
+      <h4>💴 費用備注</h4>
+      <div class="row"><b>費用：</b>¥51,000／組（含稅＋10% 服務費）</div>
+      <div class="row"><b>人數：</b>1 組 1～4 人（不分人數同價）</div>
+      <ul>
+        <li>2 人同行 → 約 <b>¥25,500／人</b></li>
+        <li>4 人同行 → 約 <b>¥12,750／人</b></li>
+      </ul>
+      <div class="row"><b>時間：</b>09:00～15:00，每次約 50 分鐘</div>
+      <div class="row"><b>包含：</b>屋形舟乘坐、抹茶體驗（野點）、季節主菓子（酒精類另計）</div>
+      <div class="row"><b>預約：</b>需於 <b>7 天前</b>完成</div>
+      <div class="row"><b>取消：</b>出發前 5 天起取消 → 100% 取消費</div>
+      <div class="row" style="margin-top:6px;color:var(--muted)">⚠️ 惡劣天氣可能臨時取消；宿泊者限定</div>
+      <div style="margin-top:10px"><a href="https://hoshinoresorts.com/en/hotels/hoshinoyakyoto/activities/13642/" target="_blank">📎 官方活動頁面 ↗</a></div>
+    </div>
+  </section>
+
+  <section id="todo">
+    <h2 class="sec">✅ 待確認事項</h2>
+    <div class="todo" id="todolist"></div>
+  </section>
+
+  <section>
+    <h2 class="sec">📝 備注</h2>
+    <div class="note-box">行程尚未確定，視情況彈性調整。以上安排供參考，請依實際狀況隨時更新。</div>
+  </section>
+
+</div>
+
+<footer>
+  ✈️ 旅行愉快　·　關西 2026
+  <div class="ln">內容整理自 Notion 行程計畫 · 日記與勾選狀態儲存在本機瀏覽器</div>
+</footer>
+
+<script>
+// ---------- 行程資料 ----------
+const DAYS = [
+  {d:1, date:"7/13（一）", region:"嵐山", cls:"", slots:[
+    {ic:"🌄", lb:"上午", ct:"✈️ 班機 07:00 出發 → 11:00 抵達（T1）<br>🚌 包車接送（約 1h45m）"},
+    {ic:"☀️", lb:"午餐", ct:"嵐山街道（自選）"},
+    {ic:"🌇", lb:"下午", ct:"🏨 14:30 先到飯店 MUNI<br>snowpeak（訂）"},
+    {ic:"🌙", lb:"晚餐", ct:'<a href="https://maps.app.goo.gl/uFGGCtC9Kdjcixs9A" target="_blank">喜重郎牛燒肉 ↗</a>'},
+    {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">MUNI</span>'},
+  ]},
+  {d:2, date:"7/14（二）", region:"嵐山", cls:"", slots:[
+    {ic:"🌅", lb:"早餐", ct:"MUNI"},
+    {ic:"🌄", lb:"上午", ct:"🚂 09:00 嵐山小火車（訂）<br>🚣 10:00 保津川遊船（訂）"},
+    {ic:"☀️", lb:"午餐", ct:'12:30 <a href="https://maps.app.goo.gl/DLF76vY5VPRTbBvWA" target="_blank">五木茶屋 ↗</a><br>已訂位 6+3+2（12:45 / 12:30 / 13:00）'},
+    {ic:"🌇", lb:"下午", ct:"嵐山米菲兔廚房"},
+    {ic:"🌙", lb:"晚餐", ct:'<a href="https://maps.app.goo.gl/DjD5PNYYRZfpR3wi8" target="_blank">儘 MAMA pizza ↗</a>（未訂）'},
+    {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">虹夕諾雅</span>'},
+  ]},
+  {d:3, date:"7/15（三）", region:"嵐山", cls:"", slots:[
+    {ic:"🌅", lb:"早餐", ct:"隨機中"},
+    {ic:"🌄", lb:"上午", ct:"🍵 09:30 西芳苔寺（訂）"},
+    {ic:"☀️", lb:"午餐", ct:'13:00 <a href="https://maps.app.goo.gl/9G2BEWrGn5NB7ofW9" target="_blank">平價和牛牛排 ↗</a>（訂）'},
+    {ic:"🌇", lb:"下午", ct:"🌿 天龍寺 × 竹林步道"},
+    {ic:"🌙", lb:"晚餐", ct:"隨機"},
+    {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">虹夕諾雅</span>'},
+  ]},
+  {d:4, date:"7/16（四）", region:"京都", cls:"kyoto", slots:[
+    {ic:"🌅", lb:"早餐", ct:'<a href="https://maps.app.goo.gl/3jFM8wLJKUmDDUBc9" target="_blank">嵐山飯糰 ↗</a>'},
+    {ic:"🌄", lb:"上午", ct:"🚌 08:00 從虹夕諾雅出發（帶行李）<br>🏡 美山茅葺聚落<br>🌉 天橋立（股覗展望台）<br>🚣 伊根舟屋（遊船餵鷹）"},
+    {ic:"☀️", lb:"午餐", ct:"天橋立周邊"},
+    {ic:"🌇", lb:"下午", ct:"🚌 包車返回京都<br>🏨 入住十字飯店"},
+    {ic:"🌙", lb:"晚餐", ct:"隨機"},
+    {ic:"🎑", lb:"晚上", ct:"🎆 宵山（祇園祭前夜祭）"},
+    {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">十字飯店</span>'},
+  ]},
+  {d:5, date:"7/17（五）", region:"京都", cls:"kyoto", slots:[
+    {ic:"🌅", lb:"早餐", ct:"隨機中"},
+    {ic:"🌄", lb:"上午", ct:"🎏 09:00 山鉾巡行（祇園祭）<br>⛩️ 南禪寺 × 哲學之道"},
+    {ic:"☀️", lb:"午餐", ct:"隨機中"},
+    {ic:"🌙", lb:"晚餐", ct:"弘燒肉"},
+    {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">十字飯店</span>'},
+  ]},
+  {d:6, date:"7/18（六）", region:"京都", cls:"kyoto", slots:[
+    {ic:"🌅", lb:"早餐", ct:"隨機中"},
+    {ic:"🌄", lb:"上午", ct:"🛍️ 錦市場"},
+    {ic:"☀️", lb:"午餐", ct:"12:00 三鳩亭（訂付）"},
+    {ic:"🌇", lb:"下午", ct:"🛺 人力車<br>🏨 移入青龍飯店"},
+    {ic:"🌙", lb:"晚餐", ct:"隨機中"},
+    {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">青龍飯店</span>'},
+  ]},
+  {d:7, date:"7/19（日）", region:"大阪", cls:"osaka", slots:[
+    {ic:"🌅", lb:"早餐", ct:"隨機中"},
+    {ic:"🌄", lb:"上午", ct:"🚌 從青龍飯店出發（帶行李）<br>⛩️ 貴船神社<br>🌿 三千院（大原）"},
+    {ic:"☀️", lb:"午餐", ct:"貴船川床料理"},
+    {ic:"🌇", lb:"下午", ct:"🚌 包車前往大阪<br>🏨 入住洲際"},
+    {ic:"🌙", lb:"晚餐", ct:"隨機中"},
+    {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">洲際</span>'},
+  ]},
+  {d:8, date:"7/20（一）", region:"大阪", cls:"osaka", slots:[
+    {ic:"🌅", lb:"早餐", ct:"隨機中"},
+    {ic:"🌄", lb:"上午", ct:"🛍️ 大阪自由遊覽（道頓堀・心齋橋・難波）"},
+    {ic:"☀️", lb:"午餐", ct:"大阪美食"},
+    {ic:"🎑", lb:"晚上", ct:"✈️ 班機 20:35（T1）→ 22:50"},
+    {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">洲際</span>'},
+  ]},
+];
+
+const daysEl = document.getElementById('days');
+DAYS.forEach(day=>{
+  const slots = day.slots.map(s=>`
+    <div class="slot"><div class="ic">${s.ic}</div><div class="lb">${s.lb}</div><div class="ct">${s.ct}</div></div>`).join('');
+  const el = document.createElement('div');
+  el.className = 'day '+day.cls + (day.d===1?' open':'');
+  el.innerHTML = `
+    <div class="day-head">
+      <div class="daynum">DAY<br>${day.d}</div>
+      <div>
+        <h3>第 ${day.d} 天</h3>
+        <div class="date">${day.date}</div>
+      </div>
+      <div class="region">📍 ${day.region}</div>
+      <div class="arr">▶</div>
+    </div>
+    <div class="day-body">
+      ${slots}
+      <div class="diary">
+        <div class="dh">✍️ 第 ${day.d} 天日記</div>
+        <textarea data-day="${day.d}" placeholder="記下今天的天氣、吃了什麼、走過哪裡、心裡的感覺…"></textarea>
+        <div class="saved" id="sv${day.d}">已儲存 ✓</div>
+      </div>
+    </div>`;
+  el.querySelector('.day-head').addEventListener('click', ()=> el.classList.toggle('open'));
+  daysEl.appendChild(el);
+});
+
+// 日記 localStorage
+document.querySelectorAll('.diary textarea').forEach(ta=>{
+  const key = 'kansai2026-diary-'+ta.dataset.day;
+  ta.value = localStorage.getItem(key) || '';
+  let t;
+  ta.addEventListener('input', ()=>{
+    localStorage.setItem(key, ta.value);
+    const sv = document.getElementById('sv'+ta.dataset.day);
+    sv.classList.add('show'); clearTimeout(t);
+    t = setTimeout(()=> sv.classList.remove('show'), 1200);
+  });
+});
+
+// ---------- 美食 ----------
+const FOOD = [
+  {cat:"🌅 早餐 / 輕食", items:[
+    {n:"Omokage Terrace（嵐山文華館）", tp:"咖啡廳 / 輕食", dish:"京都咖啡＋烤厚吐司（蜜紅豆冰淇淋）", price:"咖啡 ¥450、吐司 ¥800", when:"7/13 入住後 / 7/14–15 閒逛", note:"藏身嵐山文華館內，環境優雅清幽、CP 值高，10:00–17:00"},
+    {n:"amam dacotan 京都", tp:"人氣麵包店（福岡發祥・關西首店）", dish:"爆漿馬里托佐、達科坦漢堡、明太子麵包（約 120 種）", price:"¥280 起／個", when:"7/17 或 7/18 早餐", note:"烏丸御池站步行 4 分；08:00–19:00；上午需整理券，15:00 起自由入場；7:30 可線上預約"},
+  ]},
+  {cat:"☀️ 午餐", items:[
+    {n:"三嶋亭 本店", tp:"百年壽喜燒（明治 6 年創業）", dish:"黑毛和牛壽喜燒午間套餐", price:"¥8,591／人（＋10% 服務費）", when:"7/17 或 7/18 午餐", note:"需提前 1 個月以上預約，官網有中文；靠近錦市場可串聯"},
+    {n:"Soba Roujina（蕎麦 ろうじな）", tp:"米其林必比登 蕎麥麵", dish:"はりそば 檸檬冷麵、もりそば", price:"¥880–¥1,000／碗", when:"7/17 或 7/18 午餐", note:"Tabelog 3.70；丸太町站附近；夏天僅供冷麵；11:30–14:30"},
+    {n:"SHORAIAN 松籟庵（嵐山）", tp:"豆腐懷石 × 書法藝術空間", dish:"懷石套餐（可依過敏調整）", price:"懷石套餐（電話詢問）", when:"7/14 或 7/15 午餐", note:"天龍寺旁；僅電話預約 075-861-0123；週三休；有個室；建議預約"},
+  ]},
+  {cat:"🍧 下午茶 / 甜點", items:[
+    {n:"(THISIS)SHIZEN（新風館）", tp:"日式創意甜點 / IG 打卡", dish:"🌸 繡球花冰淇淋（7 月限定）／玫瑰花冰淇淋", price:"ICE BOUQUET ¥1,350", when:"7/17 或 7/18 下午", note:"烏丸御池站 1 分；豆沙職人手工擠花；建議 2 人共享；10:00–19:00"},
+    {n:"BABBI GELATERIA KYOTO", tp:"義式冰淇淋 × 夏季鴨川納涼床", dish:"濃郁義式冰淇淋（納涼床席）", price:"依選項而定", when:"7/17 下午（鴨川周邊）", note:"夏季限定納涼床體驗，高 CP 值；與錦市場行程可串聯"},
+  ]},
+  {cat:"🍕 晚餐 / 義式料理", items:[
+    {n:"enboca 京都（エンボカ）", tp:"創作義式薪窯披薩（京町家改建）", dish:"蓮藕＋百合根披薩、季節窯烤蔬菜拼盤", price:"午 ¥3,000–3,999；晚 ¥5,000–5,999", when:"7/17 或 7/18 晚餐", note:"Tabelog 3.74 百名店；烏丸御池站步行 7 分；午餐僅週末；火・水休；建議預約"},
+    {n:"儘 MAMA（嵐山邸宅 MAMA）", tp:"義式披薩 / 義大利料理（嵐山）", dish:"九条蔥＋吻仔魚披薩、萬願寺辣椒蒜香油披薩", price:"午 ¥2,500 起；晚 ¥5,000–8,999", when:"7/13 晚餐 或 7/14–15 午餐", note:"阪急嵐山站步行 2 分；英文菜單；有個室；兒童友善；火休"},
+  ]},
+];
+const fz = document.getElementById('foodzone');
+FOOD.forEach(g=>{
+  const cat = document.createElement('div'); cat.className='cat'; cat.textContent=g.cat; fz.appendChild(cat);
+  const grid = document.createElement('div'); grid.className='cards';
+  g.items.forEach(it=>{
+    const c = document.createElement('div'); c.className='fcard';
+    c.innerHTML = `<h4>${it.n}</h4><div class="tp">${it.tp}</div>
+      <div class="row"><b>推薦：</b>${it.dish}</div>
+      <div class="row price">💴 ${it.price}</div>
+      <div class="row"><b>建議：</b>${it.when}</div>
+      <div class="note">${it.note}</div>`;
+    grid.appendChild(c);
+  });
+  fz.appendChild(grid);
+});
+
+// ---------- 待辦 ----------
+const TODO = [
+  {t:"保津川遊船訂位", done:false},
+  {t:"苔寺入場預約（西芳寺，需書面申請）", done:true},
+  {t:"各飯店入住／退房時間確認", done:false},
+  {t:"租車或包車行程細節", done:false},
+  {t:"祇園祭宵山、山鉾巡行觀賞位置規劃", done:false},
+  {t:"各日早、午、晚餐餐廳選擇與訂位", done:false},
+];
+const tl = document.getElementById('todolist');
+TODO.forEach((x,i)=>{
+  const saved = localStorage.getItem('kansai2026-todo-'+i);
+  const checked = saved===null ? x.done : saved==='1';
+  const lab = document.createElement('label');
+  lab.innerHTML = `<input type="checkbox" ${checked?'checked':''}><span>${x.t}</span>`;
+  lab.querySelector('input').addEventListener('change', e=>{
+    localStorage.setItem('kansai2026-todo-'+i, e.target.checked?'1':'0');
+  });
+  tl.appendChild(lab);
+});
+</script>
+</body>
+</html>
