@@ -216,8 +216,8 @@
 </header>
 
 <nav>
-  <a href="#info">🛫 重要資訊</a>
   <a href="#itinerary">🗓️ 每日行程</a>
+  <a href="#info">📋 基本資訊</a>
   <a href="#ledger">💰 費用記帳</a>
   <a href="#food">🍽️ 美食名單</a>
   <a href="#boat">🛶 屋形舟</a>
@@ -226,8 +226,15 @@
 
 <div class="wrap">
 
+  <section id="itinerary">
+    <h2 class="sec">🗓️ 每日行程 & 日記</h2>
+    <p style="color:var(--muted);font-size:14px;margin-top:-12px">點標題展開每一天 · 最下方可寫當天心得，會自動存在這台裝置的瀏覽器裡。</p>
+    <div id="days"></div>
+  </section>
+
   <section id="info">
-    <h2 class="sec">🛫 班機資訊</h2>
+    <h2 class="sec">📋 基本資訊</h2>
+    <h3 style="font-size:17px;margin:0 0 14px;color:var(--accent)">🛫 班機</h3>
     <div class="flight">
       <div class="port"><div class="code">KHH</div>高雄小港<br>國際航廈</div>
       <div class="mid"><div class="no">CI166</div><div class="ln">✈</div><div class="t">3h00m · 波音737-800</div></div>
@@ -261,17 +268,9 @@
       <div class="row"><b>客服</b> 高雄 <a href="tel:+886412-9000">07-412-9000</a> ／ 台北 <a href="tel:+886224129000">(02) 412-9000</a></div>
     </div>
 
-    <h2 class="sec" style="margin-top:36px">🏨 住宿資訊</h2>
-    <p style="color:var(--muted);font-size:13px;margin-top:-12px">日本入境卡需填「在住地址」，可直接複製日文地址。</p>
+    <h3 style="font-size:17px;margin:30px 0 6px;color:var(--accent)">🏨 住宿</h3>
+    <p style="color:var(--muted);font-size:13px;margin:0 0 12px">日本入境卡需填「在住地址」，可直接複製日文地址。</p>
     <div id="hotelzone"></div>
-
-    <h2 class="sec" style="margin-top:36px">🗓️ 每日行程 & 日記</h2>
-  </section>
-
-  <section id="itinerary" style="padding-top:8px">
-    <div style="display:none"></div>
-    <p style="color:var(--muted);font-size:14px;margin-top:-12px">點標題展開每一天 · 最下方可寫當天心得，會自動存在這台裝置的瀏覽器裡。</p>
-    <div id="days"></div>
   </section>
 
   <section id="ledger">
