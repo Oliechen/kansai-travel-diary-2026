@@ -531,9 +531,8 @@ FOOD.forEach(g=>{
 
 // ---------- 費用記帳 ----------
 const CATS = [
-  {n:"機票", c:"#c0584f"},{n:"住宿", c:"#b08d4f"},{n:"餐食", c:"#5a7d6f"},
-  {n:"包車", c:"#7d5a8a"},{n:"交通", c:"#4a8aa0"},{n:"門票/體驗", c:"#c97f3a"},
-  {n:"購物", c:"#b85c7a"},{n:"其他", c:"#8c8377"}
+  {n:"餐食", c:"#5a7d6f"},{n:"包車", c:"#7d5a8a"},{n:"交通", c:"#4a8aa0"},
+  {n:"門票/體驗", c:"#c97f3a"},{n:"購物", c:"#b85c7a"},{n:"其他", c:"#8c8377"}
 ];
 const catColor = n => (CATS.find(x=>x.n===n)||{}).c || "#8c8377";
 const esc = s => (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -546,8 +545,8 @@ function loadLedger(){
   const saved = localStorage.getItem(LS_L);
   LEDGER = saved ? JSON.parse(saved) : [
     {item:'屋形舟「翡翠」(虹夕諾雅)', cat:'門票/體驗', cur:'JPY', amt:51000, payer:'', paid:false},
-    {item:'', cat:'住宿', cur:'JPY', amt:0, payer:'', paid:false},
     {item:'', cat:'餐食', cur:'JPY', amt:0, payer:'', paid:false},
+    {item:'', cat:'其他', cur:'JPY', amt:0, payer:'', paid:false},
   ];
 }
 const saveLedger = () => localStorage.setItem(LS_L, JSON.stringify(LEDGER));
