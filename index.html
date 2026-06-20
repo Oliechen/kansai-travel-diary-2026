@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>✈️ 日本關西旅遊日記 2026｜嵐山・京都・大阪</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#2b2a28; --paper:#faf6ef; --card:#fffdf9; --line:#e7ddcd;
@@ -192,6 +195,39 @@
   .payer-sum .ptag b{color:var(--accent)}
   .ledger-cat{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; vertical-align:middle}
 
+  /* ---------- MAP COVER ---------- */
+  .mapcover{background:linear-gradient(160deg,#eef5f1,#f6efe2);border:1px solid var(--line);
+    border-radius:18px;box-shadow:var(--shadow);padding:14px 14px 8px}
+  .mapcover .hint{text-align:center;color:var(--muted);font-size:12px;margin:4px 0 2px}
+  .mapcover svg .hot{cursor:pointer}
+  .maploc{display:flex;align-items:center;gap:12px;margin-bottom:2px}
+  .maploc .t{font-size:13px;color:#6a6155;line-height:1.5}
+  .maploc .t b{color:var(--gold)}
+
+  /* ---------- Q 版地點卡 ---------- */
+  .places-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(244px,1fr));gap:24px 20px;margin-top:34px}
+  .qcard{background:#fff;border:3px solid #ffe2c4;border-radius:22px;padding:18px 16px 16px;
+    box-shadow:0 8px 0 rgba(0,0,0,.05);position:relative;transition:transform .15s;
+    font-family:"Hiragino Maru Gothic ProN","PingFang TC",sans-serif}
+  .qcard:hover{transform:translateY(-4px) rotate(-.6deg)}
+  .qcard .sticker{width:82px;height:82px;border-radius:50%;display:grid;place-items:center;
+    font-size:42px;margin:-44px auto 6px;background:#fff;border:4px solid #ffe2c4;box-shadow:0 5px 0 rgba(0,0,0,.06)}
+  .qcard.c1 .sticker{background:#eafaf0;border-color:#bfe8cf}
+  .qcard.c2 .sticker{background:#fff4e0;border-color:#ffd9a0}
+  .qcard.c3 .sticker{background:#e6f3fb;border-color:#bcdcf3}
+  .qcard.c4 .sticker{background:#eef0ff;border-color:#cdd2f5}
+  .qcard.c5 .sticker{background:#fdeaef;border-color:#f6c6d4}
+  .qcard .jp{text-align:center;font-size:12px;font-weight:800;color:#c79a5f;letter-spacing:1px}
+  .qcard h4{text-align:center;font-size:19px;margin:1px 0 6px;font-weight:900;color:#4a3f36}
+  .qcard .slogan{display:block;text-align:center;font-size:13px;color:#e07a55;font-weight:800;
+    background:#fff2ec;border-radius:999px;padding:4px 10px;margin:0 0 12px}
+  .qcard ul{list-style:none;margin:0;padding:0}
+  .qcard li{font-size:13px;padding:5px 0 5px 24px;position:relative;border-top:1.5px dashed #f2e6d6;color:#5b4a37}
+  .qcard li:first-child{border-top:none}
+  .qcard li .e{position:absolute;left:0;top:5px;font-size:15px}
+  .qcard .day-tag{position:absolute;top:12px;right:12px;background:#4a3f36;color:#fff;font-size:11px;
+    font-weight:800;padding:3px 9px;border-radius:999px}
+
   footer{text-align:center; color:var(--muted); font-size:13px; padding:46px 20px 60px}
   footer .ln{margin-top:6px}
 
@@ -216,7 +252,9 @@
 </header>
 
 <nav>
+  <a href="#map">🗺️ 地圖</a>
   <a href="#itinerary">🗓️ 每日行程</a>
+  <a href="#places">🧸 認識各地</a>
   <a href="#info">📋 基本資訊</a>
   <a href="#ledger">💰 費用記帳</a>
   <a href="#food">🍽️ 美食名單</a>
@@ -226,10 +264,174 @@
 
 <div class="wrap">
 
+  <section id="map">
+    <h2 class="sec">🗺️ 全程地圖總覽</h2>
+    <div class="mapcover">
+      <div class="maploc">
+        <svg viewBox="0 0 130 120" style="width:96px;height:88px;flex:none">
+          <path d="M96,20 C104,28 100,40 92,46 C100,52 98,66 88,70 C92,80 82,90 74,86
+                   C70,96 56,96 52,86 C40,92 30,82 36,72 C26,70 26,56 36,54
+                   C30,46 36,34 46,38 C48,28 62,26 66,36 C74,26 90,30 90,42
+                   C92,40 95,30 96,20 Z" fill="#dfe7d2" stroke="#c4cdb4" stroke-width="1.5"/>
+          <circle cx="52" cy="66" r="7" fill="#c0584f" opacity=".25"/>
+          <circle cx="52" cy="66" r="3.5" fill="#c0584f"/>
+          <text x="64" y="64" font-size="9" font-weight="800" fill="#c0584f">關西</text>
+          <text x="6" y="112" font-size="9" fill="#8c8377">🗾 日本 · 關西地區</text>
+        </svg>
+        <div class="t"><b>關西 8 天 7 夜</b><br>嵐山 → 京都 → 大阪<br><span style="color:var(--muted);font-size:12px">含北部一日遊（美山・天橋立・伊根）</span></div>
+      </div>
+
+      <svg viewBox="0 0 360 420" role="img" aria-label="可愛手繪關西路線地圖" style="width:100%;height:auto;font-family:'Klee One','PingFang TC',sans-serif">
+        <defs>
+          <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
+          <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+          <style>
+            .lb{font-size:13px;font-weight:600;fill:#5b4a37}
+            .ico{font-size:27px}
+            .day{font-size:10.5px;font-weight:700;fill:#fff}
+            .seatx{font-size:12px;fill:#8bb3bf;font-weight:600}
+          </style>
+        </defs>
+        <rect x="0" y="0" width="360" height="420" rx="18" fill="#fbf6ec"/>
+        <path filter="url(#rough)" d="M12,58 C120,38 240,44 348,58 L348,362 C240,380 120,374 12,362 Z" fill="#d9ebef"/>
+        <text class="seatx" x="22" y="86">〰 日本海 〰</text>
+        <text class="seatx" x="246" y="398">〰 大阪湾</text>
+        <g filter="url(#soft)" opacity="0.5">
+          <ellipse cx="160" cy="120" rx="52" ry="34" fill="#b7d2dc"/>
+          <ellipse cx="138" cy="210" rx="46" ry="40" fill="#bcd6c4"/>
+          <ellipse cx="216" cy="206" rx="40" ry="34" fill="#cfe0c9"/>
+          <ellipse cx="182" cy="292" rx="42" ry="34" fill="#edd9a6"/>
+        </g>
+        <path filter="url(#rough)" d="M70,120 C60,72 132,58 188,70 C246,54 316,84 312,136
+          C334,200 300,286 240,330 C236,360 176,372 150,332 C120,360 70,335 80,288
+          C46,250 60,206 64,170 C58,150 64,135 70,120 Z"
+          fill="#eef2dd" stroke="#c2b291" stroke-width="2.5" stroke-linejoin="round"/>
+        <g filter="url(#rough)" fill="#fff" stroke="#e3dac8" stroke-width="1.5">
+          <path d="M34,42 q6,-13 19,-8 q9,-11 21,-2 q13,-2 11,11 q-32,5 -51,1 Z"/>
+          <path d="M288,30 q6,-11 17,-6 q9,-9 19,0 q11,0 9,11 q-28,5 -43,0 Z"/>
+        </g>
+        <text font-size="22" x="320" y="60">☀️</text>
+        <path filter="url(#rough)" d="M250,346 L150,212 L168,150 L120,108 L196,96 L216,206 L182,292 L250,346"
+          fill="none" stroke="#c0584f" stroke-width="3" stroke-dasharray="1 8" stroke-linecap="round" opacity="0.85"/>
+        <g text-anchor="middle">
+          <text class="ico" x="120" y="112">🌉</text><text class="lb" x="120" y="83">天橋立</text>
+          <text class="ico" x="196" y="100">🚣</text><text class="lb" x="208" y="74">伊根舟屋</text>
+          <text class="ico" x="168" y="154">🏡</text><text class="lb" x="168" y="178">美山</text>
+          <text class="ico" x="150" y="216">🎋</text><text class="lb" x="116" y="222">嵐山</text>
+          <text class="ico" x="216" y="210">⛩️</text><text class="lb" x="248" y="214">京都</text>
+          <text class="ico" x="182" y="296">🏯</text><text class="lb" x="182" y="320">大阪</text>
+          <text class="ico" x="250" y="350">✈️</text><text class="lb" x="250" y="374">關西機場</text>
+        </g>
+        <g>
+          <g transform="rotate(-4 126 232)"><rect x="96" y="223" width="60" height="19" rx="9.5" fill="#5a7d6f"/><text class="day" x="126" y="236" text-anchor="middle">D1–3 嵐山</text></g>
+          <g transform="rotate(3 262 232)"><rect x="232" y="223" width="60" height="19" rx="9.5" fill="#b08d4f"/><text class="day" x="262" y="236" text-anchor="middle">D4–6 京都</text></g>
+          <g transform="rotate(-3 181 338)"><rect x="151" y="329" width="60" height="19" rx="9.5" fill="#c0584f"/><text class="day" x="181" y="342" text-anchor="middle">D7–8 大阪</text></g>
+          <g transform="rotate(4 190 138)"><rect x="150" y="129" width="80" height="19" rx="9.5" fill="#4a8aa0"/><text class="day" x="190" y="142" text-anchor="middle">D4 北部一日遊</text></g>
+        </g>
+        <!-- 可點熱點：跳到該天行程 -->
+        <g class="">
+          <rect class="hot" x="128" y="196" width="44" height="34" fill="transparent" onclick="openDay(1)"><title>嵐山（7/13–15）</title></rect>
+          <rect class="hot" x="148" y="136" width="40" height="34" fill="transparent" onclick="openDay(4)"><title>美山（7/16）</title></rect>
+          <rect class="hot" x="100" y="92" width="42" height="36" fill="transparent" onclick="openDay(4)"><title>天橋立（7/16）</title></rect>
+          <rect class="hot" x="176" y="80" width="42" height="36" fill="transparent" onclick="openDay(4)"><title>伊根舟屋（7/16）</title></rect>
+          <rect class="hot" x="196" y="192" width="46" height="34" fill="transparent" onclick="openDay(5)"><title>京都市區（7/17–18）</title></rect>
+          <rect class="hot" x="160" y="278" width="44" height="34" fill="transparent" onclick="openDay(8)"><title>大阪（7/19–20）</title></rect>
+          <rect class="hot" x="230" y="332" width="44" height="34" fill="transparent" onclick="openDay(8)"><title>關西機場（7/20 回程）</title></rect>
+        </g>
+      </svg>
+      <p class="hint">✋ 點地圖上的地標，跳到那天行程　·　位置為 Q 版示意，導航請用各景點地圖連結</p>
+    </div>
+  </section>
+
   <section id="itinerary">
     <h2 class="sec">🗓️ 每日行程 & 日記</h2>
     <p style="color:var(--muted);font-size:14px;margin-top:-12px">點標題展開每一天 · 最下方可寫當天心得，會自動存在這台裝置的瀏覽器裡。</p>
     <div id="days"></div>
+  </section>
+
+  <section id="places">
+    <h2 class="sec">🧸 認識各地</h2>
+    <p style="color:var(--muted);font-size:14px;margin-top:-12px">每個地方長什麼樣、有什麼特色 — 一眼就懂。</p>
+    <div class="places-grid">
+
+      <div class="qcard c1"><span class="day-tag">7/13–15</span><div class="sticker">🎋</div>
+        <div class="jp">あらしやま</div><h4>嵐山</h4><span class="slogan">竹林與小火車的起點</span>
+        <ul>
+          <li><span class="e">🚂</span>嵯峨野小火車穿山谷，櫻紅楓綠隨季節變</li>
+          <li><span class="e">🛶</span>保津川遊船，順流而下看溪谷</li>
+          <li><span class="e">🌿</span>竹林の道＋天龍寺枯山水庭園</li>
+          <li><span class="e">🌉</span>渡月橋畔，嵐山的招牌風景</li>
+        </ul></div>
+
+      <div class="qcard c2"><span class="day-tag">7/16</span><div class="sticker">🏡</div>
+        <div class="jp">みやま</div><h4>美山</h4><span class="slogan">童話裡的茅草屋村</span>
+        <ul>
+          <li><span class="e">🌾</span>50 棟茅葺き屋頂老屋，日本原風景</li>
+          <li><span class="e">🌫️</span>清晨晨霧繚繞，無人空景最夢幻</li>
+          <li><span class="e">📷</span>團客還沒到的早晨＝拍照黃金時段</li>
+        </ul></div>
+
+      <div class="qcard c3"><span class="day-tag">7/16</span><div class="sticker">🌉</div>
+        <div class="jp">あまのはしだて</div><h4>天橋立</h4><span class="slogan">日本三景・股下看飛龍</span>
+        <ul>
+          <li><span class="e">🐉</span>飛龍觀「股のぞき」倒過來看，沙洲變飛龍</li>
+          <li><span class="e">🌊</span>3.6 公里細長白沙洲橫跨海灣</li>
+          <li><span class="e">🪭</span>智恩寺抽特有「扇子籤」掛松樹</li>
+          <li><span class="e">🍤</span>在地海鮮：蛤蜊丼、丹後牛</li>
+        </ul></div>
+
+      <div class="qcard c4"><span class="day-tag">7/16</span><div class="sticker">⛵</div>
+        <div class="jp">いね</div><h4>伊根舟屋</h4><span class="slogan">蓋在海上的家</span>
+        <ul>
+          <li><span class="e">🏠</span>230 棟舟屋沿海排排站，一樓停船二樓住人</li>
+          <li><span class="e">🚤</span>搭海上計程車出海，餵海鷗、海上拍舟屋</li>
+          <li><span class="e">☕</span>INE CAFE 落地窗，看伊根灣喝冰咖啡</li>
+        </ul></div>
+
+      <div class="qcard c5"><span class="day-tag">7/19</span><div class="sticker">⛩️</div>
+        <div class="jp">きぶね</div><h4>貴船</h4><span class="slogan">在溪流上吃料理</span>
+        <ul>
+          <li><span class="e">🏮</span>紅燈籠石階參道，京都最上鏡的神社之一</li>
+          <li><span class="e">🍢</span>夏季限定「川床料理」，餐桌就架在溪水上</li>
+          <li><span class="e">💧</span>水占卜：神籤泡水才浮字</li>
+          <li><span class="e">🐉</span>奧宮藏日本三大龍穴，求姻緣靈驗</li>
+        </ul></div>
+
+      <div class="qcard c1"><span class="day-tag">7/19</span><div class="sticker">🍵</div>
+        <div class="jp">おおはら</div><h4>大原</h4><span class="slogan">苔庭與抹茶的療癒</span>
+        <ul>
+          <li><span class="e">🌿</span>三千院青苔庭園，藏著萌萌「綠苔童地藏」</li>
+          <li><span class="e">🖼️</span>寶泉院「額緣庭園」，坐著像看畫一樣賞 700 年松</li>
+          <li><span class="e">🍡</span>配一碗熱抹茶和菓子，山谷裡放空</li>
+        </ul></div>
+
+      <div class="qcard c5"><span class="day-tag">7/16–18</span><div class="sticker">🏮</div>
+        <div class="jp">きょうと</div><h4>京都市區</h4><span class="slogan">千年古都遇上祇園祭</span>
+        <ul>
+          <li><span class="e">🎏</span>祇園祭：宵宵山夜祭＋山鉾巡行（一年最熱鬧）</li>
+          <li><span class="e">⛩️</span>南禪寺紅磚水道橋＋哲學之道散步</li>
+          <li><span class="e">🛍️</span>錦市場「京都廚房」邊走邊吃</li>
+          <li><span class="e">🛺</span>人力車穿梭東山石板路</li>
+        </ul></div>
+
+      <div class="qcard c3"><span class="day-tag">7/19</span><div class="sticker">🌅</div>
+        <div class="jp">びわこ</div><h4>琵琶湖・大津</h4><span class="slogan">回程的休息站驚喜</span>
+        <ul>
+          <li><span class="e">🌇</span>大津SA 頂樓 360° 展望，遠眺日本最大湖黃昏</li>
+          <li><span class="e">🥟</span>551 蓬萊肉包直營店，免進市區排隊</li>
+          <li><span class="e">🛗</span>設備新、無障礙友善，伸展休息剛剛好</li>
+        </ul></div>
+
+      <div class="qcard c2"><span class="day-tag">7/19–20</span><div class="sticker">🐙</div>
+        <div class="jp">おおさか</div><h4>大阪</h4><span class="slogan">吃爆道頓堀！</span>
+        <ul>
+          <li><span class="e">🏃</span>道頓堀固力果跑跑人＋運河霓虹招牌</li>
+          <li><span class="e">🐙</span>章魚燒、大阪燒、串炸，庶民美食天堂</li>
+          <li><span class="e">🛍️</span>心齋橋＋難波，逛街血拼一條龍</li>
+          <li><span class="e">🥩</span>梅田 Grand Front 頂級和牛壽喜燒</li>
+        </ul></div>
+
+    </div>
   </section>
 
   <section id="info">
@@ -423,6 +625,7 @@ DAYS.forEach(day=>{
     <div class="slot"><div class="ic">${s.ic}</div><div class="lb">${s.lb}</div><div class="ct">${s.ct}</div></div>`).join('');
   const el = document.createElement('div');
   el.className = 'day '+day.cls + (day.d===1?' open':'');
+  el.id = 'day'+day.d;
   el.innerHTML = `
     <div class="day-head">
       <div class="daynum">DAY<br>${day.d}</div>
@@ -444,6 +647,16 @@ DAYS.forEach(day=>{
   el.querySelector('.day-head').addEventListener('click', ()=> el.classList.toggle('open'));
   daysEl.appendChild(el);
 });
+
+// 地圖地標 → 跳到該天行程並展開
+function openDay(n){
+  const el = document.getElementById('day'+n);
+  if(!el) return;
+  el.classList.add('open');
+  el.scrollIntoView({behavior:'smooth', block:'start'});
+  el.style.transition='box-shadow .3s'; el.style.boxShadow='0 0 0 3px rgba(192,88,79,.45)';
+  setTimeout(()=> el.style.boxShadow='', 1400);
+}
 
 // 日記 localStorage
 document.querySelectorAll('.diary textarea').forEach(ta=>{
