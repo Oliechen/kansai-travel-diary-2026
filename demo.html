@@ -170,8 +170,80 @@
     <div class="row"><span class="ic">🎑</span><span class="nm">宵宵山（自由參加）</span><span class="bk pay">— 免預約</span></div>
   </div>
 
+  <!-- ⑤ Q版插畫地圖 -->
+  <span class="feat-label" style="background:var(--gold)">⑤ Q版插畫地圖（全程總覽）</span>
+  <p class="feat-note">放在頁面最上方當封面。一眼看懂「整趟去哪、哪天在哪、怎麼繞」——負責「懂整趟」，導航交給地圖連結。</p>
+
+  <div style="background:linear-gradient(160deg,#eef5f1,#f6efe2);border:1px solid var(--line);
+    border-radius:18px;box-shadow:var(--shadow);padding:16px 14px">
+
+    <!-- 小日本 locator -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:6px">
+      <svg viewBox="0 0 130 120" style="width:104px;height:96px;flex:none">
+        <path d="M96,20 C104,28 100,40 92,46 C100,52 98,66 88,70 C92,80 82,90 74,86
+                 C70,96 56,96 52,86 C40,92 30,82 36,72 C26,70 26,56 36,54
+                 C30,46 36,34 46,38 C48,28 62,26 66,36 C74,26 90,30 90,42
+                 C92,40 95,30 96,20 Z" fill="#dfe7d2" stroke="#c4cdb4" stroke-width="1.5"/>
+        <circle cx="52" cy="66" r="7" fill="#c0584f" opacity=".25"/>
+        <circle cx="52" cy="66" r="3.5" fill="#c0584f"/>
+        <text x="64" y="64" font-size="9" font-weight="800" fill="#c0584f">關西</text>
+        <text x="6" y="112" font-size="9" fill="#8c8377">🗾 日本 · 關西地區</text>
+      </svg>
+      <div style="font-size:13px;color:#6a6155">
+        <b style="color:var(--gold)">關西 8 天 7 夜</b><br>嵐山 → 京都 → 大阪<br>
+        <span style="color:var(--muted);font-size:12px">含北部一日遊（美山・天橋立・伊根）</span>
+      </div>
+    </div>
+
+    <!-- Q版關西地圖 -->
+    <svg viewBox="0 0 360 410" role="img" aria-label="Q版關西路線示意圖" style="width:100%;height:auto">
+      <defs>
+        <style>
+          .land{fill:#e7eccf;stroke:#cdd6b4;stroke-width:2}
+          .sea{fill:#d3e6ec}
+          .route{fill:none;stroke:#c0584f;stroke-width:3;stroke-dasharray:2 7;stroke-linecap:round}
+          .ico{font-size:26px} .lb{font-size:12px;font-weight:800;fill:#4a463f}
+          .day{font-size:10px;font-weight:800;fill:#fff} .daybg{fill:#b08d4f}
+          .seatx{font-size:11px;fill:#7fa6b2;font-weight:700}
+        </style>
+      </defs>
+
+      <rect class="sea" x="0" y="0" width="360" height="410" rx="16"/>
+      <text class="seatx" x="20" y="34">日本海</text>
+      <text class="seatx" x="250" y="392">大阪湾</text>
+
+      <!-- 陸地 -->
+      <path class="land" d="M70,120 C60,70 130,55 185,68 C245,52 315,82 312,135
+        C332,200 300,285 240,330 C235,360 175,372 150,332 C120,360 70,335 78,288
+        C45,250 58,205 64,170 C58,150 64,135 70,120 Z"/>
+
+      <!-- 路線（虛線，依日序串接） -->
+      <path class="route" d="M250,340 L150,210 L168,150 L120,108 L195,96 L215,205 L182,290 L250,340"/>
+
+      <!-- 地標 -->
+      <g text-anchor="middle">
+        <text class="ico" x="120" y="112">🌉</text><text class="lb" x="120" y="84">天橋立</text>
+        <text class="ico" x="195" y="100">🚣</text><text class="lb" x="205" y="74">伊根舟屋</text>
+        <text class="ico" x="168" y="154">🏡</text><text class="lb" x="168" y="176">美山</text>
+        <text class="ico" x="150" y="214">🎋</text><text class="lb" x="120" y="220">嵐山</text>
+        <text class="ico" x="215" y="209">⛩️</text><text class="lb" x="245" y="212">京都</text>
+        <text class="ico" x="182" y="294">🏯</text><text class="lb" x="182" y="316">大阪</text>
+        <text class="ico" x="250" y="344">✈️</text><text class="lb" x="250" y="366">關西機場</text>
+      </g>
+
+      <!-- Day 徽章 -->
+      <g>
+        <rect class="daybg" x="95" y="222" width="58" height="18" rx="9"/><text class="day" x="124" y="235" text-anchor="middle">D1–3 嵐山</text>
+        <rect class="daybg" x="232" y="222" width="58" height="18" rx="9"/><text class="day" x="261" y="235" text-anchor="middle">D4–6 京都</text>
+        <rect class="daybg" x="150" y="326" width="58" height="18" rx="9"/><text class="day" x="179" y="339" text-anchor="middle">D7–8 大阪</text>
+        <rect class="daybg" fill="#5a7d6f" x="150" y="138" width="78" height="18" rx="9"/><text class="day" x="189" y="151" text-anchor="middle">D4 北部一日遊</text>
+      </g>
+    </svg>
+    <p style="text-align:center;color:var(--muted);font-size:11.5px;margin:4px 0 0">＊位置為 Q 版示意，非精確比例｜導航請用各景點的地圖連結</p>
+  </div>
+
   <p style="margin-top:34px;color:var(--muted);font-size:13.5px">
-    👆 這四個就是「讓人很懂一天」的核心。喜歡哪幾個、或想調整呈現，告訴我，我再正式做進你的行程頁（每一天都套用）。
+    👆 五個模式（①摘要卡 ②小地圖 ③移動停留上色 ④訂位徽章 ⑤Q版插畫地圖）就是「讓人很懂」的核心。喜歡哪幾個、想搭哪種風格，告訴我，我再正式做進行程頁。
   </p>
 </div>
 </body>
