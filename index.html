@@ -84,6 +84,16 @@
   .slot .ct br{content:""; display:block; margin:2px 0}
   .hotel-tag{display:inline-block; margin-top:2px; font-size:12.5px; font-weight:700;
     color:var(--gold); background:#f7f0df; padding:2px 10px; border-radius:6px}
+  /* 餐廳必選 Top3 */
+  .top3{margin-top:7px; border:1px solid #f0d9b8; background:#fffaf0; border-radius:10px; padding:0 11px}
+  .top3>summary{cursor:pointer; list-style:none; font-size:12.5px; font-weight:800; color:var(--gold); padding:7px 0}
+  .top3>summary::-webkit-details-marker{display:none}
+  .top3>summary::before{content:"🏆 "}
+  .top3>summary::after{content:" ▾"; color:#caa86a}
+  .top3[open]>summary::after{content:" ▴"}
+  .top3 ol{margin:2px 0 8px; padding-left:20px; font-size:12.5px; color:#5b554c; line-height:1.65}
+  .top3 ol li{margin:3px 0}
+  .top3 .menu{display:inline-block; margin:0 0 9px; font-size:12px; font-weight:700}
 
   /* ---------- DIARY ---------- */
   .diary{margin-top:14px; border-top:2px solid var(--line); padding-top:14px}
@@ -557,13 +567,13 @@ const DAYS = [
     {ic:"🌄", lb:"上午", ct:"✈️ 班機 07:00 出發 → 11:00 抵達（T1）<br>🚌 包車接送（約 1h45m）"},
     {ic:"☀️", lb:"午餐", ct:"嵐山街道（自選）"},
     {ic:"🌇", lb:"下午", ct:"🏨 14:30 先到飯店 MUNI<br>snowpeak（訂）"},
-    {ic:"🌙", lb:"晚餐", ct:'<a href="https://maps.app.goo.gl/uFGGCtC9Kdjcixs9A" target="_blank">喜重郎牛燒肉 ↗</a>'},
+    {ic:"🌙", lb:"晚餐", ct:'<a href="https://maps.app.goo.gl/uFGGCtC9Kdjcixs9A" target="_blank">喜重郎牛燒肉 ↗</a><details class="top3"><summary>必選 Top3</summary><ol><li>和牛ロースステーキ重 120g（招牌・和牛沙朗牛排重）</li><li>和牛焼き肉重（和牛燒肉重）</li><li>和牛ロースステーキ肉まぶし膳（牛排三吃膳）</li></ol><a class="menu" href="https://tabelog.com/kyoto/A2601/A260403/26030903/dtlmenu/" target="_blank">看完整菜單 ↗</a></details>'},
     {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">MUNI</span>'},
   ]},
   {d:2, date:"7/14（二）", region:"嵐山", cls:"", slots:[
     {ic:"🌅", lb:"早餐", ct:"MUNI"},
     {ic:"🌄", lb:"上午", ct:'🚂 09:00 <a href="https://www.google.com/maps/search/?api=1&query=%E5%B5%AF%E5%B3%A8%E9%87%8E%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%88%97%E8%BB%8A%20%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%B5%90%E5%B1%B1%E9%A7%85" target="_blank">嵐山小火車 ↗</a>（訂）<br>🚣 10:00 <a href="https://www.google.com/maps/search/?api=1&query=%E4%BF%9D%E6%B4%A5%E5%B7%9D%E4%B8%8B%E3%82%8A%20%E4%B9%97%E8%88%B9%E5%A0%B4%20%E4%BA%80%E5%B2%A1" target="_blank">保津川遊船 ↗</a>（訂）'},
-    {ic:"☀️", lb:"午餐", ct:'12:30 <a href="https://maps.app.goo.gl/DLF76vY5VPRTbBvWA" target="_blank">五木茶屋 ↗</a><br>已訂位 6+3+2（12:45 / 12:30 / 13:00）'},
+    {ic:"☀️", lb:"午餐", ct:'12:30 <a href="https://maps.app.goo.gl/DLF76vY5VPRTbBvWA" target="_blank">五木茶屋 ↗</a><br>已訂位 6+3+2（12:45 / 12:30 / 13:00）<details class="top3"><summary>必選 Top3</summary><ol><li>京丼五種食べ比べ膳 ¥4,000（招牌・5 種京丼一次嚐）</li><li>和牛ローストビーフ丼（和牛烤牛肉丼）</li><li>京野菜天ぷら丼（京野菜天婦羅丼）</li></ol><a class="menu" href="https://itsukichaya.com/" target="_blank">看完整菜單 ↗</a></details>'},
     {ic:"🌇", lb:"下午", ct:'<a href="https://www.google.com/maps/search/?api=1&query=%E3%83%9F%E3%83%83%E3%83%95%E3%82%A3%E3%83%BC%20%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3%20%E3%83%99%E3%83%BC%E3%82%AB%E3%83%AA%E3%83%BC%20%E5%B5%90%E5%B1%B1" target="_blank">嵐山米菲兔廚房 ↗</a>'},
     {ic:"🌙", lb:"晚餐", ct:'<a href="https://maps.app.goo.gl/DjD5PNYYRZfpR3wi8" target="_blank">儘 MAMA pizza ↗</a>（未訂）'},
     {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">虹夕諾雅</span>'},
@@ -596,7 +606,7 @@ const DAYS = [
   {d:6, date:"7/18（六）", region:"京都", cls:"kyoto", slots:[
     {ic:"🌅", lb:"早餐", ct:"隨機中"},
     {ic:"🌄", lb:"上午", ct:'🛍️ <a href="https://www.google.com/maps/search/?api=1&query=%E9%8C%A6%E5%B8%82%E5%A0%B4%20%E4%BA%AC%E9%83%BD" target="_blank">錦市場 ↗</a>'},
-    {ic:"☀️", lb:"午餐", ct:'12:00 <a href="https://www.google.com/maps/search/?api=1&query=%E4%B8%89%E5%B6%8B%E4%BA%AD%20%E6%9C%AC%E5%BA%97%20%E4%BA%AC%E9%83%BD" target="_blank">三嶋亭 ↗</a>（訂付）'},
+    {ic:"☀️", lb:"午餐", ct:'12:00 <a href="https://www.google.com/maps/search/?api=1&query=%E4%B8%89%E5%B6%8B%E4%BA%AD%20%E6%9C%AC%E5%BA%97%20%E4%BA%AC%E9%83%BD" target="_blank">三嶋亭 ↗</a>（訂付）<details class="top3"><summary>必選 Top3</summary><ol><li>京すき焼き懐石 花コース（招牌・壽喜燒懷石＋菓子薄茶）</li><li>黒毛和牛すき焼き 午間套餐 ¥8,591／人</li><li>牛肉の佃煮（百年名物・可外帶伴手禮）</li></ol><a class="menu" href="https://www.mishima-tei.co.jp/cuisine/honten.html" target="_blank">看完整菜單 ↗</a></details>'},
     {ic:"🌇", lb:"下午", ct:"🛺 人力車<br>🏨 移入青龍飯店"},
     {ic:"🌙", lb:"晚餐", ct:"隨機中"},
     {ic:"🏨", lb:"住宿", ct:'<span class="hotel-tag">青龍飯店</span>'},
