@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🧪 功能範例 — 讀懂一天的行程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#2b2a28; --paper:#faf6ef; --card:#fffdf9; --line:#e7ddcd;
@@ -171,8 +174,8 @@
   </div>
 
   <!-- ⑤ Q版插畫地圖 -->
-  <span class="feat-label" style="background:var(--gold)">⑤ Q版插畫地圖（全程總覽）</span>
-  <p class="feat-note">放在頁面最上方當封面。一眼看懂「整趟去哪、哪天在哪、怎麼繞」——負責「懂整趟」，導航交給地圖連結。</p>
+  <span class="feat-label" style="background:var(--gold)">⑤ Q版插畫地圖 · 可愛手繪版</span>
+  <p class="feat-note">放在頁面最上方當封面。晃動線條＋水彩暈染＋手寫字，旅行手帳的溫度。一眼看懂整趟怎麼繞——導航交給地圖連結。</p>
 
   <div style="background:linear-gradient(160deg,#eef5f1,#f6efe2);border:1px solid var(--line);
     border-radius:18px;box-shadow:var(--shadow);padding:16px 14px">
@@ -195,48 +198,69 @@
       </div>
     </div>
 
-    <!-- Q版關西地圖 -->
-    <svg viewBox="0 0 360 410" role="img" aria-label="Q版關西路線示意圖" style="width:100%;height:auto">
+    <!-- Q版關西地圖 · 可愛手繪版 -->
+    <svg viewBox="0 0 360 420" role="img" aria-label="可愛手繪關西路線示意圖" style="width:100%;height:auto;font-family:'Klee One','PingFang TC',sans-serif">
       <defs>
+        <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
+        <filter id="soft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
         <style>
-          .land{fill:#e7eccf;stroke:#cdd6b4;stroke-width:2}
-          .sea{fill:#d3e6ec}
-          .route{fill:none;stroke:#c0584f;stroke-width:3;stroke-dasharray:2 7;stroke-linecap:round}
-          .ico{font-size:26px} .lb{font-size:12px;font-weight:800;fill:#4a463f}
-          .day{font-size:10px;font-weight:800;fill:#fff} .daybg{fill:#b08d4f}
-          .seatx{font-size:11px;fill:#7fa6b2;font-weight:700}
+          .lb{font-size:13px;font-weight:600;fill:#5b4a37}
+          .ico{font-size:27px}
+          .day{font-size:10.5px;font-weight:700;fill:#fff}
+          .seatx{font-size:12px;fill:#8bb3bf;font-weight:600}
         </style>
       </defs>
 
-      <rect class="sea" x="0" y="0" width="360" height="410" rx="16"/>
-      <text class="seatx" x="20" y="34">日本海</text>
-      <text class="seatx" x="250" y="392">大阪湾</text>
+      <!-- 紙底 -->
+      <rect x="0" y="0" width="360" height="420" rx="18" fill="#fbf6ec"/>
 
-      <!-- 陸地 -->
-      <path class="land" d="M70,120 C60,70 130,55 185,68 C245,52 315,82 312,135
-        C332,200 300,285 240,330 C235,360 175,372 150,332 C120,360 70,335 78,288
-        C45,250 58,205 64,170 C58,150 64,135 70,120 Z"/>
+      <!-- 海 -->
+      <path filter="url(#rough)" d="M12,58 C120,38 240,44 348,58 L348,362 C240,380 120,374 12,362 Z" fill="#d9ebef"/>
+      <text class="seatx" x="22" y="86">〰 日本海 〰</text>
+      <text class="seatx" x="246" y="398">〰 大阪湾</text>
 
-      <!-- 路線（虛線，依日序串接） -->
-      <path class="route" d="M250,340 L150,210 L168,150 L120,108 L195,96 L215,205 L182,290 L250,340"/>
-
-      <!-- 地標 -->
-      <g text-anchor="middle">
-        <text class="ico" x="120" y="112">🌉</text><text class="lb" x="120" y="84">天橋立</text>
-        <text class="ico" x="195" y="100">🚣</text><text class="lb" x="205" y="74">伊根舟屋</text>
-        <text class="ico" x="168" y="154">🏡</text><text class="lb" x="168" y="176">美山</text>
-        <text class="ico" x="150" y="214">🎋</text><text class="lb" x="120" y="220">嵐山</text>
-        <text class="ico" x="215" y="209">⛩️</text><text class="lb" x="245" y="212">京都</text>
-        <text class="ico" x="182" y="294">🏯</text><text class="lb" x="182" y="316">大阪</text>
-        <text class="ico" x="250" y="344">✈️</text><text class="lb" x="250" y="366">關西機場</text>
+      <!-- 水彩暈染（地區色塊） -->
+      <g filter="url(#soft)" opacity="0.5">
+        <ellipse cx="160" cy="120" rx="52" ry="34" fill="#b7d2dc"/>
+        <ellipse cx="138" cy="210" rx="46" ry="40" fill="#bcd6c4"/>
+        <ellipse cx="216" cy="206" rx="40" ry="34" fill="#cfe0c9"/>
+        <ellipse cx="182" cy="292" rx="42" ry="34" fill="#edd9a6"/>
       </g>
 
-      <!-- Day 徽章 -->
+      <!-- 陸地（手繪雙線） -->
+      <path filter="url(#rough)" d="M70,120 C60,72 132,58 188,70 C246,54 316,84 312,136
+        C334,200 300,286 240,330 C236,360 176,372 150,332 C120,360 70,335 80,288
+        C46,250 60,206 64,170 C58,150 64,135 70,120 Z"
+        fill="#eef2dd" stroke="#c2b291" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <!-- 雲朵 ＋ 太陽 -->
+      <g filter="url(#rough)" fill="#fff" stroke="#e3dac8" stroke-width="1.5">
+        <path d="M34,42 q6,-13 19,-8 q9,-11 21,-2 q13,-2 11,11 q-32,5 -51,1 Z"/>
+        <path d="M288,30 q6,-11 17,-6 q9,-9 19,0 q11,0 9,11 q-28,5 -43,0 Z"/>
+      </g>
+      <text font-size="22" x="320" y="60">☀️</text>
+
+      <!-- 路線（手繪虛線） -->
+      <path filter="url(#rough)" d="M250,346 L150,212 L168,150 L120,108 L196,96 L216,206 L182,292 L250,346"
+        fill="none" stroke="#c0584f" stroke-width="3" stroke-dasharray="1 8" stroke-linecap="round" opacity="0.85"/>
+
+      <!-- 地標 ＋ 手寫標籤 -->
+      <g text-anchor="middle">
+        <text class="ico" x="120" y="112">🌉</text><text class="lb" x="120" y="83">天橋立</text>
+        <text class="ico" x="196" y="100">🚣</text><text class="lb" x="208" y="74">伊根舟屋</text>
+        <text class="ico" x="168" y="154">🏡</text><text class="lb" x="168" y="178">美山</text>
+        <text class="ico" x="150" y="216">🎋</text><text class="lb" x="116" y="222">嵐山</text>
+        <text class="ico" x="216" y="210">⛩️</text><text class="lb" x="248" y="214">京都</text>
+        <text class="ico" x="182" y="296">🏯</text><text class="lb" x="182" y="320">大阪</text>
+        <text class="ico" x="250" y="350">✈️</text><text class="lb" x="250" y="374">關西機場</text>
+      </g>
+
+      <!-- Day 貼紙（微傾） -->
       <g>
-        <rect class="daybg" x="95" y="222" width="58" height="18" rx="9"/><text class="day" x="124" y="235" text-anchor="middle">D1–3 嵐山</text>
-        <rect class="daybg" x="232" y="222" width="58" height="18" rx="9"/><text class="day" x="261" y="235" text-anchor="middle">D4–6 京都</text>
-        <rect class="daybg" x="150" y="326" width="58" height="18" rx="9"/><text class="day" x="179" y="339" text-anchor="middle">D7–8 大阪</text>
-        <rect class="daybg" fill="#5a7d6f" x="150" y="138" width="78" height="18" rx="9"/><text class="day" x="189" y="151" text-anchor="middle">D4 北部一日遊</text>
+        <g transform="rotate(-4 126 232)"><rect x="96" y="223" width="60" height="19" rx="9.5" fill="#5a7d6f"/><text class="day" x="126" y="236" text-anchor="middle">D1–3 嵐山</text></g>
+        <g transform="rotate(3 262 232)"><rect x="232" y="223" width="60" height="19" rx="9.5" fill="#b08d4f"/><text class="day" x="262" y="236" text-anchor="middle">D4–6 京都</text></g>
+        <g transform="rotate(-3 181 338)"><rect x="151" y="329" width="60" height="19" rx="9.5" fill="#c0584f"/><text class="day" x="181" y="342" text-anchor="middle">D7–8 大阪</text></g>
+        <g transform="rotate(4 190 138)"><rect x="150" y="129" width="80" height="19" rx="9.5" fill="#4a8aa0"/><text class="day" x="190" y="142" text-anchor="middle">D4 北部一日遊</text></g>
       </g>
     </svg>
     <p style="text-align:center;color:var(--muted);font-size:11.5px;margin:4px 0 0">＊位置為 Q 版示意，非精確比例｜導航請用各景點的地圖連結</p>
