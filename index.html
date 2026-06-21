@@ -71,6 +71,15 @@
     border-radius:999px; background:#fbeae8; color:var(--accent)}
   .day.kyoto .region{background:#e9f1ec; color:var(--accent2)}
   .day.osaka .region{background:#f6efdd; color:var(--gold)}
+  .heat{font-size:11px; font-weight:800; padding:3px 9px; border-radius:999px; margin-left:8px; white-space:nowrap}
+  .heat.h{background:#fbe1dc; color:#c0392b}
+  .heat.m{background:#f6ecd6; color:#b08d4f}
+  .heat.l{background:#e6f0ea; color:#5a7d6f}
+  .heat-tip{display:flex; gap:9px; background:#fff6ed; border:1px solid #f0d9b8;
+    border-left:4px solid var(--accent); border-radius:10px; padding:10px 13px; margin:4px 0 12px;
+    font-size:13px; color:#6a5b45; line-height:1.6}
+  .heat-tip .hic{font-size:17px; flex:none}
+  .heat-tip b{color:var(--accent)}
   .day-head .arr{margin-left:8px; transition:transform .25s; color:var(--muted)}
   .day.open .arr{transform:rotate(90deg)}
   .day-body{display:none; padding:4px 20px 20px}
@@ -639,6 +648,17 @@ const DAYS = [
   ]},
 ];
 
+// 各天曝曬指數（7月京都酷暑）：h高/m中/l低
+const HEAT = {
+  1:['l','低'], 2:['m','中'], 3:['m','中'], 4:['h','高'],
+  5:['h','高'], 6:['m','中'], 7:['m','中高'], 8:['m','中'],
+};
+// 戶外吃重日的防暑提醒
+const HEAT_TIP = {
+  4:'<b>戶外整天・最曬：</b>美山→天橋立→伊根全在烈日下，午後最熱。早上趁涼拍美山、正午躲進午餐室內降溫；伊根 15:30 後較不曬。全程帶水、陽傘、涼感巾，長輩小孩勤補水。夜祭人擠悶熱，留意中暑。',
+  5:'<b>巡行＋戶外・很曬：</b>山鉾巡行站著看極曬極擠，長輩小孩建議找陰涼處或縮短時間；南禪寺哲學之道少遮蔭，排上午較涼，帶水與帽子。',
+  7:'<b>溪谷較涼但仍防曬：</b>貴船川床在溪上涼爽，是今天的避暑亮點；但貴船參道、大原仍有曝曬與階梯，長輩備休息。午後回程大津SA可吹冷氣休息。',
+};
 const daysEl = document.getElementById('days');
 DAYS.forEach(day=>{
   const slots = day.slots.map(s=>`
@@ -646,6 +666,8 @@ DAYS.forEach(day=>{
   const el = document.createElement('div');
   el.className = 'day '+day.cls + (day.d===1?' open':'');
   el.id = 'day'+day.d;
+  const heat = HEAT[day.d] ? `<div class="heat ${HEAT[day.d][0]}">☀️ 曝曬${HEAT[day.d][1]}</div>` : '';
+  const tip = HEAT_TIP[day.d] ? `<div class="heat-tip"><span class="hic">🥵</span><div>${HEAT_TIP[day.d]}</div></div>` : '';
   el.innerHTML = `
     <div class="day-head">
       <div class="daynum">DAY<br>${day.d}</div>
@@ -654,9 +676,11 @@ DAYS.forEach(day=>{
         <div class="date">${day.date}</div>
       </div>
       <div class="region">📍 ${day.region}</div>
+      ${heat}
       <div class="arr">▶</div>
     </div>
     <div class="day-body">
+      ${tip}
       ${slots}
       <div class="diary">
         <div class="dh">✍️ 第 ${day.d} 天日記</div>
