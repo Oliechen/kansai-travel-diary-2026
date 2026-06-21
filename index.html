@@ -286,7 +286,6 @@
   <a href="#info">📋 基本資訊</a>
   <a href="#ledger">💰 費用記帳</a>
   <a href="#food">🍽️ 美食名單</a>
-  <a href="#boat">🛶 屋形舟</a>
   <a href="#todo">✅ 待辦</a>
 </nav>
 
@@ -491,13 +490,6 @@
     </div>
     <div class="flight-meta"><span><b>艙等</b> 經濟艙 K</span><span><b>託運</b> 2 件／23kg</span><span><b>餐</b> 有</span></div>
 
-    <div class="callout" style="background:#fbf5eb;border-color:#ecd9b0;border-left-color:var(--gold)">
-      <div class="row">✈️ 中華航空 China Airlines</div>
-      <div class="row"><b>訂位代號</b> <span class="pnr">BHCRQS</span><button class="copy" onclick="copyTxt('BHCRQS',this)">複製</button></div>
-      <div class="row"><b>機票號碼</b> 2977474686388</div>
-      <div class="row"><b>客服</b> 高雄 <a href="tel:+886412-9000">07-412-9000</a> ／ 台北 <a href="tel:+886224129000">(02) 412-9000</a></div>
-    </div>
-
     <h3 style="font-size:17px;margin:30px 0 6px;color:var(--accent)">🏨 住宿</h3>
     <p style="color:var(--muted);font-size:13px;margin:0 0 12px">日本入境卡需填「在住地址」，可直接複製日文地址。</p>
     <div id="hotelzone"></div>
@@ -542,24 +534,6 @@
     <div id="foodzone"></div>
   </section>
 
-  <section id="boat">
-    <h2 class="sec">🛶 虹夕諾雅 嵐山｜屋形舟「翡翠」</h2>
-    <div class="callout">
-      <h4>💴 費用備注</h4>
-      <div class="row"><b>費用：</b>¥51,000／組（含稅＋10% 服務費）</div>
-      <div class="row"><b>人數：</b>1 組 1～4 人（不分人數同價）</div>
-      <ul>
-        <li>2 人同行 → 約 <b>¥25,500／人</b></li>
-        <li>4 人同行 → 約 <b>¥12,750／人</b></li>
-      </ul>
-      <div class="row"><b>時間：</b>09:00～15:00，每次約 50 分鐘</div>
-      <div class="row"><b>包含：</b>屋形舟乘坐、抹茶體驗（野點）、季節主菓子（酒精類另計）</div>
-      <div class="row"><b>預約：</b>需於 <b>7 天前</b>完成</div>
-      <div class="row"><b>取消：</b>出發前 5 天起取消 → 100% 取消費</div>
-      <div class="row" style="margin-top:6px;color:var(--muted)">⚠️ 惡劣天氣可能臨時取消；宿泊者限定</div>
-      <div style="margin-top:10px"><a href="https://hoshinoresorts.com/en/hotels/hoshinoyakyoto/activities/13642/" target="_blank">📎 官方活動頁面 ↗</a></div>
-    </div>
-  </section>
 
   <section id="todo">
     <h2 class="sec">✅ 待辦・行前盤點</h2>
@@ -891,7 +865,7 @@ const TODO_GROUPS = [
   {g:"🎟️ 活動・體驗預約", items:[
     {t:"保津川遊船 訂位", pri:"hot", sub:"7/14；尚未訂，夏季熱門；10 人以上可電話預約",
       links:[{u:"https://www.hozugawakudari.jp/",t:"保津川下り 官網"}]},
-    {t:"虹夕諾雅 屋形舟「翡翠」預約", pri:"hot", sub:"需 7 天前預約，出發前 5 天起取消收 100%；確認是否要訂",
+    {t:"虹夕諾雅 屋形舟「翡翠」預約", pri:"hot", sub:"¥51,000／組（1～4 人同價）・09:00–15:00 約 50 分・含抹茶野點與季節主菓子・宿泊者限定；需 7 天前預約，出發前 5 天起取消收 100%；確認是否要訂",
       links:[{u:"https://hoshinoresorts.com/en/hotels/hoshinoyakyoto/activities/13642/",t:"官方活動頁"}]},
     {t:"伊根 海上計程車 預約確認", pri:"hot", sub:"7/16；最多 12 人，向船頭電話預約 11 人船班",
       links:[{u:"https://www.ine-kankou.jp/view/seataxi",t:"伊根町觀光協會(船頭電話)"}]},
@@ -921,7 +895,6 @@ const TODO_GROUPS = [
   ]},
   {g:"👨‍👩‍👧‍👦 三代同堂・11 人團體", items:[
     {t:"長輩體力/膝蓋友善確認", pri:"warm", sub:"多階梯景點（貴船、清水周邊）預留休息與替代方案"},
-    {t:"嬰幼兒需求（推車/哺乳/午睡）", pri:"warm", sub:"確認景點可推嬰兒車、餐廳兒童椅"},
     {t:"分組與聯絡方式", pri:"warm", sub:"11 人易走散；建群組、約集合點與時間、長輩配對照顧"},
     {t:"常備藥與健保/保險資料", pri:"hot", sub:"慢性病藥、小兒藥、暈車藥；投保旅平險＋海外醫療"},
   ]},
