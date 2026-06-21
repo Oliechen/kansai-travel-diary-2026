@@ -126,6 +126,15 @@
   .todo label:last-child{border-bottom:none}
   .todo input{margin-top:4px; width:17px; height:17px; accent-color:var(--accent2); flex:none}
   .todo input:checked + span{text-decoration:line-through; color:var(--muted)}
+  .todo-group{margin-bottom:16px}
+  .todo-gh{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;
+    margin:0 0 6px;color:var(--accent)}
+  .todo-gh .prog{margin-left:auto;font-size:12px;font-weight:700;color:var(--muted);
+    background:#f3ece0;border-radius:999px;padding:2px 10px}
+  .todo .sub{font-size:12px;color:var(--muted);margin-left:28px;margin-top:-2px}
+  .todo .pri{font-size:11px;font-weight:800;padding:1px 7px;border-radius:5px;margin-left:6px}
+  .pri.hot{background:#fbeae8;color:var(--accent)}
+  .pri.warm{background:#f6efdd;color:var(--gold)}
 
   /* ---------- CALLOUT ---------- */
   .callout{background:#eef4f7; border:1px solid #d6e4ea; border-left:4px solid #5a8aa0;
@@ -544,8 +553,9 @@
   </section>
 
   <section id="todo">
-    <h2 class="sec">✅ 待確認事項</h2>
-    <div class="todo" id="todolist"></div>
+    <h2 class="sec">✅ 待辦・行前盤點</h2>
+    <p style="color:var(--muted);font-size:14px;margin-top:-12px">針對 11 人・三代同堂・自助・7 月酷暑 的缺口清單。<span style="color:var(--accent);font-weight:700">必辦</span>＝會卡到行程，<span style="color:var(--gold);font-weight:700">建議</span>＝強烈建議。勾選自動存本機。</p>
+    <div id="todolist"></div>
   </section>
 
   <section>
@@ -838,24 +848,83 @@ rateInput.addEventListener('input', ()=>{
 renderLedger();
 
 // ---------- 待辦 ----------
-const TODO = [
-  {t:"保津川遊船訂位", done:false},
-  {t:"苔寺入場預約（西芳寺，需書面申請）", done:true},
-  {t:"各飯店入住／退房時間確認", done:false},
-  {t:"租車或包車行程細節", done:false},
-  {t:"祇園祭宵山、山鉾巡行觀賞位置規劃", done:false},
-  {t:"各日早、午、晚餐餐廳選擇與訂位", done:false},
+// pri: hot=最緊急 warm=次要 ''=一般；sub=補充說明
+const TODO_GROUPS = [
+  {g:"🍽️ 餐廳訂位（11 人大團，務必提早）", items:[
+    {t:"7/14 晚 儘MAMA pizza 訂位", pri:"hot", sub:"目前未訂；11 人需個室或分桌，火曜定休先確認"},
+    {t:"7/16 午 天橋立餐廳二選一並訂位", pri:"hot", sub:"よし乃や（名物花枝丼需前一日預約）／瑞松苑；11 人務必先訂"},
+    {t:"7/17 晚 弘燒肉 訂位", pri:"hot", sub:"已選未訂；山鉾巡行日市區人多，先卡位"},
+    {t:"7/19 晚 大阪梅田三選一並訂位", pri:"warm", sub:"大井肉店／梅の花／Pierre；長輩友善，建議椅席包廂"},
+    {t:"7/13 晚 喜重郎 確認訂位", pri:"warm", sub:"已選，確認 11 人座位已訂"},
+    {t:"7/15 晚・7/18 晚・7/20 午晚 餐廳仍空白", pri:"", sub:"多為「隨機中」，至少先定區域與備案，避免現場 11 人難排"},
+    {t:"早餐方案（多日隨機）", pri:"", sub:"飯店附早餐者免；其餘先選麵包店/便利商店外帶，趕車日尤其"},
+  ]},
+  {g:"🎟️ 活動・體驗預約", items:[
+    {t:"保津川遊船 訂位", pri:"hot", sub:"7/14；尚未訂，夏季熱門"},
+    {t:"虹夕諾雅 屋形舟「翡翠」預約", pri:"hot", sub:"需 7 天前預約，出發前 5 天起取消收 100%；確認是否要訂"},
+    {t:"伊根 海上計程車 預約確認", pri:"hot", sub:"7/16；行程假設已預約，需向業者確認 11 人船班"},
+    {t:"嵐山小火車 確認取票/座位", pri:"warm", sub:"7/14（已訂）確認 11 張票與時段"},
+    {t:"7/18 人力車 確認", pri:"", sub:"11 人需多台，現場恐排隊，可先預約"},
+    {t:"苔寺（西芳寺）入場預約", done:true, sub:"已完成書面申請"},
+  ]},
+  {g:"🚐 交通・包車（11 人團體關鍵）", items:[
+    {t:"確認包車車型可載 11 人＋行李", pri:"hot", sub:"7/16、7/19 全日包車；11 人通常需中巴，行李日要留空間"},
+    {t:"機場 ↔ 飯店 接送（7/13、7/20）", pri:"hot", sub:"11 人＋行李，需確認車輛與費用；回程班機 20:35 抓好出發時間"},
+    {t:"飯店間移動安排（換 5 間飯店）", pri:"warm", sub:"帶行李日：7/16、7/18、7/19；確認誰搬行李、怎麼移動"},
+    {t:"市區交通票券（ICOCA/巴士一日券）", pri:"", sub:"11 人份，先想好京都市區與大阪自由日怎麼移動"},
+  ]},
+  {g:"🏨 住宿", items:[
+    {t:"各飯店入住/退房時間確認", pri:"warm", sub:"虹夕諾雅 15:00 入/12:00 退；其餘待確認"},
+    {t:"11 人房型/床數確認", pri:"warm", sub:"三代同堂，長輩近電梯、嬰幼兒加床/嬰兒床需求"},
+    {t:"行李提前寄送（宅急便）評估", pri:"", sub:"換飯店多，可考慮把大行李先送到後段飯店減輕負擔"},
+  ]},
+  {g:"🌡️ 7 月酷暑對策（京都常 35°C＋濕熱）", items:[
+    {t:"每日防曬/消暑裝備", pri:"hot", sub:"陽傘、帽子、攜帶式電扇、涼感巾、防曬乳；長輩小孩特別備"},
+    {t:"補水與鹽分", pri:"hot", sub:"隨身水壺、鹽糖/寶礦力；戶外行程（嵐山、天橋立、貴船）易中暑"},
+    {t:"行程避開正午曝曬", pri:"warm", sub:"寺廟/戶外排早上或傍晚，正午安排室內（錦市場、咖啡、午餐）"},
+    {t:"中暑/不適 應變", pri:"warm", sub:"記下飯店附近診所/藥局；備退熱貼、防中暑藥"},
+    {t:"祇園祭夜祭防中暑＋人潮", pri:"warm", sub:"宵宵山(7/16)、山鉾巡行(7/17)極熱極擠，長輩小孩留意"},
+  ]},
+  {g:"👨‍👩‍👧‍👦 三代同堂・11 人團體", items:[
+    {t:"長輩體力/膝蓋友善確認", pri:"warm", sub:"多階梯景點（貴船、清水周邊）預留休息與替代方案"},
+    {t:"嬰幼兒需求（推車/哺乳/午睡）", pri:"warm", sub:"確認景點可推嬰兒車、餐廳兒童椅"},
+    {t:"分組與聯絡方式", pri:"warm", sub:"11 人易走散；建群組、約集合點與時間、長輩配對照顧"},
+    {t:"常備藥與健保/保險資料", pri:"hot", sub:"慢性病藥、小兒藥、暈車藥；投保旅平險＋海外醫療"},
+  ]},
+  {g:"🎫 證件・金錢・網路", items:[
+    {t:"護照效期＋Visit Japan Web 入境資料", pri:"hot", sub:"11 人逐一填好海關/檢疫 QR；在住地址用飯店日文地址（基本資訊區可複製）"},
+    {t:"網路（11 人 eSIM/Wi-Fi 分享器）", pri:"warm", sub:"大團建議多張 eSIM 或 2 台分享器，分組不失聯"},
+    {t:"現金與支付", pri:"warm", sub:"日幣現金（小店/神社）＋信用卡；先換匯、記到費用記帳區"},
+    {t:"祇園祭/活動票券與時刻表", pri:"", sub:"山鉾巡行觀賞位置與封街時間先查好"},
+  ]},
 ];
+
 const tl = document.getElementById('todolist');
-TODO.forEach((x,i)=>{
-  const saved = localStorage.getItem('kansai2026-todo-'+i);
-  const checked = saved===null ? x.done : saved==='1';
-  const lab = document.createElement('label');
-  lab.innerHTML = `<input type="checkbox" ${checked?'checked':''}><span>${x.t}</span>`;
-  lab.querySelector('input').addEventListener('change', e=>{
-    localStorage.setItem('kansai2026-todo-'+i, e.target.checked?'1':'0');
+TODO_GROUPS.forEach((grp,gi)=>{
+  const box = document.createElement('div'); box.className='todo todo-group';
+  const head = document.createElement('div'); head.className='todo-gh';
+  head.innerHTML = `<span>${grp.g}</span><span class="prog" id="prog${gi}"></span>`;
+  box.appendChild(head);
+  grp.items.forEach((x,ii)=>{
+    const key='kansai2026-td-'+gi+'-'+ii;
+    const saved=localStorage.getItem(key);
+    const checked = saved===null ? !!x.done : saved==='1';
+    const lab=document.createElement('label');
+    const pri = x.pri==='hot'?'<span class="pri hot">必辦</span>':x.pri==='warm'?'<span class="pri warm">建議</span>':'';
+    lab.innerHTML=`<input type="checkbox" ${checked?'checked':''}><span>${x.t}${pri}</span>`;
+    box.appendChild(lab);
+    if(x.sub){const s=document.createElement('div');s.className='sub';s.textContent=x.sub;box.appendChild(s);}
+    lab.querySelector('input').addEventListener('change',e=>{
+      localStorage.setItem(key, e.target.checked?'1':'0'); updateProg(gi);
+    });
   });
-  tl.appendChild(lab);
+  tl.appendChild(box);
+  function updateProg(g){
+    const inputs=box.querySelectorAll('input[type=checkbox]');
+    const done=[...inputs].filter(i=>i.checked).length;
+    document.getElementById('prog'+g).textContent=done+' / '+inputs.length;
+  }
+  updateProg(gi);
 });
 </script>
 </body>
